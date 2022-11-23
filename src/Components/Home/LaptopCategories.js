@@ -1,7 +1,33 @@
 import React from "react";
+import img1 from "../../assets/hp.jpg";
+import img2 from "../../assets/mackbook.jpg";
+import img3 from "../../assets/dell.jpg";
+import img5 from "../../assets/acer.jpg";
+import DisplayCategories from "./DisplayCategories";
 
 const LaptopCategories = () => {
-  const categories = ["Acer", "Apple", "Asus", "Dell", "HP"];
+  const categories = [
+    {
+      id: 1,
+      BrandName: "HP",
+      img: img1,
+    },
+    {
+      id: 2,
+      BrandName: "MacBook",
+      img: img2,
+    },
+    {
+      id: 3,
+      BrandName: "Dell",
+      img: img3,
+    },
+    {
+      id: 4,
+      BrandName: "Acer",
+      img: img5,
+    },
+  ];
   return (
     <div className="w-9/12 mx-auto">
       <div>
@@ -15,13 +41,12 @@ const LaptopCategories = () => {
           etc.
         </p>
       </div>
-      <div className="grid grid-cols-5 gap-5 text-center">
-        {categories.map((category, i) => (
-          <div key={i}>
-            <p className="text-3xl font-bold my-5 bg-blue-400 text-white px-3 py-3 cursor-pointer">
-              {category}
-            </p>
-          </div>
+      <div className="grid grid-cols-4 gap-10 text-center">
+        {categories.map((category) => (
+          <DisplayCategories
+            key={category.id}
+            category={category}
+          ></DisplayCategories>
         ))}
       </div>
     </div>
