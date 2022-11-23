@@ -1,10 +1,12 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const SingleCategory = () => {
   const singleProduct = useLoaderData();
   console.log(singleProduct);
   const {
+    _id,
     name,
     image,
     resellPrice,
@@ -15,6 +17,32 @@ const SingleCategory = () => {
     productDetails,
     productId,
   } = singleProduct;
+  const navigate = useNavigate();
+
+  const handlebook = (id) => {
+    const buyerBook = {
+      id,
+      name,
+      image,
+      resellPrice,
+      location,
+      sellerName,
+    };
+
+    fetch("http://localhost:5000/buyerBooking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(buyerBook),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("SuccessFully Booked");
+        console.log(data);
+        navigate(`/addproducts/${productId}`);
+      });
+  };
   return (
     <div className="w-9/12 mx-auto my-16">
       <div className="flex justify-center items-center bg-gray-100 p-5 gap-10 ">
@@ -39,7 +67,10 @@ const SingleCategory = () => {
             Seller Name : <span className="font-normal">{sellerName}</span>
           </p>
           <p className="font-normal mb-2">{productDetails}</p>
-          <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3">
+          <button
+            onClick={() => handlebook(_id)}
+            className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3"
+          >
             Book Now
           </button>
           <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3">
