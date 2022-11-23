@@ -29,7 +29,7 @@ const AddProducts = () => {
         console.log(data);
         const productsInfo = {
           name,
-          image: data.datadisplay_url,
+          image: data.data.display_url,
           resellPrice,
           originalPrice,
           location,

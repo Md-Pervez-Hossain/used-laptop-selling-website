@@ -34,7 +34,7 @@ const LaptopCategories = () => {
         <h2 className="text-7xl font-bold text-center mb-10 ">
           Laptop categories
         </h2>
-        <p className="text-center mb-5 ">
+        <p className="text-center mb-10 ">
           Laptop Brands are Apple, Dell, Sony, Hewlett-Packard (HP), Samsung,{" "}
           <br />
           Compaq, Acer, Lenovo, Toshiba, LG, Asus, Panasonic, Alienware, Gateway
