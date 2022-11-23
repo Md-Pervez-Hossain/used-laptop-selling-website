@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const handleAddProductSubmit = (event) => {
@@ -11,7 +12,8 @@ const AddProducts = () => {
     const location = form.location.value;
     const useTime = form.useTime.value;
     const sellerName = form.sellerName.value;
-    const productCategory = form.sellerName.value;
+    const productDetails = form.productDetails.value;
+    const productId = form.productId.value;
     const formData = new FormData();
     formData.append("image", image);
 
@@ -33,8 +35,25 @@ const AddProducts = () => {
           location,
           useTime,
           sellerName,
-          productCategory,
+          productId,
+          productDetails,
         };
+        fetch("http://localhost:5000/addproducts", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(productsInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Product Added");
+            form.reset();
+            console.log(data);
+          });
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
@@ -99,13 +118,17 @@ const AddProducts = () => {
             <div>
               <input
                 type="text"
-                name="productCategory"
-                placeholder="Product Category"
+                name="productId"
+                placeholder="Product Id"
                 className="input  w-full my-4"
               />
             </div>
           </div>
-          <textarea className="textarea w-full" placeholder="Bio"></textarea>
+          <textarea
+            className="textarea w-full"
+            placeholder="Bio"
+            name="productDetails"
+          ></textarea>
           <button className="w-full mt-4 bg-blue-400 text-white px-3 py-3 font-bold text-xl rounded-md">
             Add Product
           </button>
