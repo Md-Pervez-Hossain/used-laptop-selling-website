@@ -6,6 +6,7 @@ import AddProducts from "../DashBoard/AddProducts";
 import DashBoard from "../DashBoard/DashBoard";
 import MyBookings from "../DashBoard/MyBookings";
 import MyProduct from "../DashBoard/MyProduct/MyProduct";
+import Advertisement from "../Home/Advertisement/Advertisement";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/advertisement",
+        element: <Advertisement></Advertisement>,
       },
       {
         path: "/login",
