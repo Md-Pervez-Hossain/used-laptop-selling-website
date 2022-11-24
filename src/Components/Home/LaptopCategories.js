@@ -9,7 +9,7 @@ const LaptopCategories = () => {
   const categories = [
     {
       id: 1,
-      BrandName: "HP",
+      BrandName: "Hp",
       img: img1,
     },
     {

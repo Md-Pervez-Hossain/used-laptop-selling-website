@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../UseContex/AuthProvider";
 
 const SingleCategory = () => {
+  const { user } = useContext(AuthContext);
+  const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
   console.log(singleProduct);
   const {
@@ -15,33 +18,56 @@ const SingleCategory = () => {
     location,
     sellerName,
     productDetails,
-    productId,
+
+    categoryProduct,
   } = singleProduct;
   // const navigate = useNavigate();
   // navigate(`/addproducts/${productId}`);
 
-  const handlebook = (id) => {
-    // const buyerBook = {
-    //   id,
-    //   name,
-    //   image,
-    //   resellPrice,
-    //   location,
-    //   sellerName,
-    // };
-    // fetch("http://localhost:5000/buyerBooking", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(buyerBook),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     toast.success("SuccessFully Booked");
-    //     console.log(data);
-    //   });
+  const handleBookNow = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const productname = form.productname.value;
+    const price = form.price.value;
+    const number = form.number.value;
+    const location = form.location.value;
+    console.log({ name, email, productname, price, number, location });
+
+    const bookingInfo = {
+      name,
+      email,
+      productname,
+      price,
+      number,
+      location,
+      image,
+    };
+    fetch("http://localhost:5000/buyerBooking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Product Booked");
+        form.reset();
+        console.log(data);
+      });
+
+    fetch(`http://localhost:5000/addproducts/${_id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setOpenModal(null);
+      });
   };
+
   return (
     <div className="w-9/12 mx-auto my-16">
       <div className="flex justify-center items-center bg-gray-100 p-5 gap-10 ">
@@ -66,15 +92,102 @@ const SingleCategory = () => {
             Seller Name : <span className="font-normal">{sellerName}</span>
           </p>
           <p className="font-normal mb-2">{productDetails}</p>
-          <Link to={`/productbooking/${_id}`}>
-            <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3">
-              Book Now
-            </button>
-          </Link>
+
+          {/* The button to open modal */}
+          <label htmlFor="Booking-modal" className="btn">
+            Book Now
+          </label>
+
+          {/* Put this part before </body> tag */}
+          {openModal === null && (
+            <>
+              <input
+                type="checkbox"
+                id="Booking-modal"
+                className="modal-toggle"
+              />
+              <div className="modal">
+                <div className="modal-box">
+                  <h2 className="text-4xl font-bold my-3 text-blue-400">
+                    Fill The Form For <br /> Booking
+                  </h2>
+                  <form onSubmit={handleBookNow}>
+                    <div>
+                      <input
+                        defaultValue={user?.displayName}
+                        readOnly
+                        required
+                        name="name"
+                        type="text"
+                        placeholder="Type here"
+                        className="input input-bordered w-full  mb-5"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        defaultValue={user?.email}
+                        readOnly
+                        required
+                        name="email"
+                        type="text"
+                        placeholder="Email"
+                        className="input input-bordered w-full mb-5 "
+                      />
+                    </div>
+                    <div>
+                      <input
+                        defaultValue={name}
+                        readOnly
+                        name="productname"
+                        type="text"
+                        placeholder="Product Name"
+                        className="input input-bordered w-full  mb-5"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        defaultValue={resellPrice + " BDT"}
+                        readOnly
+                        name="price"
+                        type="text"
+                        placeholder="Price"
+                        className="input input-bordered w-full  mb-5"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        name="number"
+                        type="text"
+                        placeholder="Enter Your Number"
+                        className="input input-bordered w-full  mb-5"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        name="location"
+                        type="text"
+                        placeholder="Enter Meeting Location"
+                        className="input input-bordered w-full  mb-5"
+                      />
+                    </div>
+                    <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
+                      Book Now
+                    </button>
+                  </form>
+                  <div className="modal-action">
+                    <label htmlFor="Booking-modal" className="btn">
+                      Cancel
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
           <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3">
             Add To WishList
           </button>
-          <Link to={`/addproducts/${productId}`}>
+          <Link to={`/addproducts/${categoryProduct}`}>
             <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3">
               Cancel
             </button>

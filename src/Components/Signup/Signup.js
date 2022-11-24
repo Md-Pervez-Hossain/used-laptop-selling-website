@@ -155,8 +155,8 @@ const Signup = () => {
                 </label>
               </div>
               <select name="role" className="select w-full border-gray-300">
+                <option selected>Buyer</option>
                 <option>Seller</option>
-                <option>Buyer</option>
               </select>
             </div>
           </div>

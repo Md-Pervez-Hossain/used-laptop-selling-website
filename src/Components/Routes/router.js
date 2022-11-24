@@ -4,6 +4,8 @@ import ProductBooking from "../AllCategoryProducts/ProductBooking";
 import SingleCategory from "../AllCategoryProducts/SingleCategory";
 import AddProducts from "../DashBoard/AddProducts";
 import DashBoard from "../DashBoard/DashBoard";
+import MyBookings from "../DashBoard/MyBookings";
+import MyProduct from "../DashBoard/MyProduct/MyProduct";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
@@ -53,6 +55,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addservice",
         element: <AddProducts></AddProducts>,
+      },
+      {
+        path: "/dashboard/myorders",
+        element: <MyBookings></MyBookings>,
+      },
+      {
+        path: "/dashboard/myservice",
+        element: <MyProduct></MyProduct>,
       },
     ],
   },

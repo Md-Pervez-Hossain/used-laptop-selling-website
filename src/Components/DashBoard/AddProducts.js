@@ -13,7 +13,7 @@ const AddProducts = () => {
     const useTime = form.useTime.value;
     const sellerName = form.sellerName.value;
     const productDetails = form.productDetails.value;
-    const productId = form.productId.value;
+    const categoryProduct = form.categoryProduct.value;
     const formData = new FormData();
     formData.append("image", image);
 
@@ -35,7 +35,7 @@ const AddProducts = () => {
           location,
           useTime,
           sellerName,
-          productId,
+          categoryProduct,
           productDetails,
         };
         fetch("http://localhost:5000/addproducts", {
@@ -116,17 +116,17 @@ const AddProducts = () => {
               />
             </div>
             <div>
-              <input
-                type="text"
-                name="productId"
-                placeholder="Product Id"
-                className="input  w-full my-4"
-              />
+              <select name="categoryProduct" className="select w-full mt-4">
+                <option>Hp</option>
+                <option>MacBook</option>
+                <option>Dell</option>
+                <option>Acer</option>
+              </select>
             </div>
           </div>
           <textarea
             className="textarea w-full"
-            placeholder="Bio"
+            placeholder="Product Description"
             name="productDetails"
           ></textarea>
           <button className="w-full mt-4 bg-blue-400 text-white px-3 py-3 font-bold text-xl rounded-md">

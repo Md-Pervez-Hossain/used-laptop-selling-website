@@ -38,6 +38,7 @@ const ProductBooking = () => {
       price,
       number,
       location,
+      image,
     };
     fetch("http://localhost:5000/buyerBooking", {
       method: "POST",
@@ -50,7 +51,6 @@ const ProductBooking = () => {
       .then((data) => {
         toast.success("Product Booked");
         form.reset();
-        navigate(`/addproduct/${productId}`);
         console.log(data);
       });
 
@@ -73,69 +73,86 @@ const ProductBooking = () => {
           <h2 className="text-5xl font-bold text-blue-400 mb-5">
             Fill The Form For <br /> Booking
           </h2>
-          <form onSubmit={handleBookNow}>
-            <div>
-              <input
-                defaultValue={user?.displayName}
-                readOnly
-                required
-                name="name"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full  mb-5"
-              />
+
+          {/* The button to open modal */}
+          <label htmlFor="my-modal" className="btn">
+            open modal
+          </label>
+
+          {/* Put this part before </body> tag */}
+          <input type="checkbox" id="my-modal" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box">
+              <form onSubmit={handleBookNow}>
+                <div>
+                  <input
+                    defaultValue={user?.displayName}
+                    readOnly
+                    required
+                    name="name"
+                    type="text"
+                    placeholder="Type here"
+                    className="input input-bordered w-full  mb-5"
+                  />
+                </div>
+                <div>
+                  <input
+                    defaultValue={user?.email}
+                    readOnly
+                    required
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    className="input input-bordered w-full mb-5 "
+                  />
+                </div>
+                <div>
+                  <input
+                    defaultValue={name}
+                    readOnly
+                    name="productname"
+                    type="text"
+                    placeholder="Product Name"
+                    className="input input-bordered w-full  mb-5"
+                  />
+                </div>
+                <div>
+                  <input
+                    defaultValue={resellPrice + " BDT"}
+                    readOnly
+                    name="price"
+                    type="text"
+                    placeholder="Price"
+                    className="input input-bordered w-full  mb-5"
+                  />
+                </div>
+                <div>
+                  <input
+                    name="number"
+                    type="text"
+                    placeholder="Enter Your Number"
+                    className="input input-bordered w-full  mb-5"
+                  />
+                </div>
+                <div>
+                  <input
+                    name="location"
+                    type="text"
+                    placeholder="Enter Meeting Location"
+                    className="input input-bordered w-full  mb-5"
+                  />
+                </div>
+                <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
+                  Book Now
+                </button>
+              </form>
+              <div className="modal-action">
+                <label htmlFor="my-modal" className="btn">
+                  Yay!
+                </label>
+              </div>
             </div>
-            <div>
-              <input
-                defaultValue={user?.email}
-                readOnly
-                required
-                name="email"
-                type="text"
-                placeholder="Email"
-                className="input input-bordered w-full mb-5 "
-              />
-            </div>
-            <div>
-              <input
-                defaultValue={name}
-                readOnly
-                name="productname"
-                type="text"
-                placeholder="Product Name"
-                className="input input-bordered w-full  mb-5"
-              />
-            </div>
-            <div>
-              <input
-                defaultValue={resellPrice + " BDT"}
-                readOnly
-                name="price"
-                type="text"
-                placeholder="Price"
-                className="input input-bordered w-full  mb-5"
-              />
-            </div>
-            <div>
-              <input
-                name="number"
-                type="text"
-                placeholder="Enter Your Number"
-                className="input input-bordered w-full  mb-5"
-              />
-            </div>
-            <div>
-              <input
-                name="location"
-                type="text"
-                placeholder="Enter Meeting Location"
-                className="input input-bordered w-full  mb-5"
-              />
-            </div>
-            <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
-              Book Now
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
