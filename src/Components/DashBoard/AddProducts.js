@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../UseContex/AuthProvider";
 
 const AddProducts = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleAddProductSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,6 +18,7 @@ const AddProducts = () => {
     const sellerName = form.sellerName.value;
     const productDetails = form.productDetails.value;
     const categoryProduct = form.categoryProduct.value;
+    const time = new Date().toLocaleDateString();
     const formData = new FormData();
     formData.append("image", image);
 
@@ -37,6 +42,8 @@ const AddProducts = () => {
           sellerName,
           categoryProduct,
           productDetails,
+          email: user?.email,
+          time,
         };
         fetch("http://localhost:5000/addproducts", {
           method: "POST",
@@ -48,6 +55,7 @@ const AddProducts = () => {
           .then((res) => res.json())
           .then((data) => {
             toast.success("Product Added");
+            navigate("/dashboard/myservice");
             form.reset();
             console.log(data);
           });

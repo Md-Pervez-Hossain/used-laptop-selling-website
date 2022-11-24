@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../UseContex/AuthProvider";
 
 const MyBookings = () => {
@@ -12,6 +13,40 @@ const MyBookings = () => {
         setMyBooking(data);
       });
   }, [user?.email]);
+
+  const handleMyorderDelete = (id) => {
+    const agree = window.confirm("Are You Sure ? You Want to Delete");
+    if (agree) {
+      fetch(`http://localhost:5000/mybooking/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount) {
+            toast.success("Order Cancel");
+            const remainingBooking = myBooking.filter(
+              (remaining) => remaining._id !== id
+            );
+            setMyBooking(remainingBooking);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    }
+
+    fetch(`http://localhost:5000/productupdate/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -23,6 +58,7 @@ const MyBookings = () => {
               <th>Product Name</th>
               <th>Price</th>
               <th>Payment</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -35,8 +71,16 @@ const MyBookings = () => {
                 <td>{bookProduct.productname}</td>
                 <td>{bookProduct.price}</td>
                 <td>
-                  <button className="bg-blue-400 px-4 py-2 text-white font-bold ">
+                  <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
                     Pay
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleMyorderDelete(bookProduct._id)}
+                    className="bg-blue-400 px-4 py-2 text-white font-bold  rounded-md"
+                  >
+                    Order Cancel
                   </button>
                 </td>
               </tr>
