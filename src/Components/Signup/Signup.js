@@ -17,11 +17,11 @@ const Signup = () => {
     const image = form.image.files[0];
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ name, image, email, password });
+    const role = form.role.value;
+    console.log({ name, image, email, password, role });
 
     const formData = new FormData();
     formData.append("image", image);
-
     fetch(
       `https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf`,
       {
@@ -39,7 +39,26 @@ const Signup = () => {
               .then(() => {
                 toast.success("user SuccessFully created");
                 form.reset();
-
+                const signupInfo = {
+                  name,
+                  image: data.data.display_url,
+                  email,
+                  password,
+                  role,
+                };
+                fetch("http://localhost:5000/users", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(signupInfo),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    toast.success("User SuccessFully Created");
+                    form.reset();
+                    console.log(data);
+                  });
                 navigate(from, { replace: true });
                 setLoading(false);
               })
@@ -83,7 +102,7 @@ const Signup = () => {
                 id="name"
                 required
                 placeholder="Enter Your Name Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-400 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-400  text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -95,6 +114,7 @@ const Signup = () => {
                 type="file"
                 id="image"
                 name="image"
+                className="file-input file-input-bordered w-full"
                 accept="image/*"
                 required
               />
@@ -109,7 +129,7 @@ const Signup = () => {
                 name="email"
                 id="email"
                 placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-400 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-400  text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -125,10 +145,22 @@ const Signup = () => {
                 id="password"
                 required
                 placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:outline-blue-400 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300  focus:outline-blue-400 text-gray-900"
               />
             </div>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label htmlFor="password" className="text-sm">
+                  Role
+                </label>
+              </div>
+              <select name="role" className="select w-full border-gray-300">
+                <option>Seller</option>
+                <option>Buyer</option>
+              </select>
+            </div>
           </div>
+
           <div className="space-y-2">
             <div>
               <button className=" bg-blue-400 px-2 py-3 font-bold rounded-md text-white w-full">

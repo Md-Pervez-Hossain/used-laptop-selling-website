@@ -4,6 +4,7 @@ import DisplayAllCategory from "./DisplayAllCategory";
 
 const AllCategoryProducts = () => {
   const allProducts = useLoaderData();
+  console.log(allProducts);
   return (
     <div className="w-9/12 mx-auto my-16">
       <div className="grid grid-cols-4 gap-10">
