@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { AuthContext } from "../../UseContex/AuthProvider";
 
 const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
+  const { user } = useContext(AuthContext);
+  const [buttonDisbled, setButtonDisabled] = useState(false);
   const { _id, image, name, resellPrice, booked } = myProduct;
   const handleAdvertisement = (myProduct) => {
     console.log(myProduct);
