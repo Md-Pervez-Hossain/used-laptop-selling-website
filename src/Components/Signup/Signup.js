@@ -60,8 +60,8 @@ const Signup = () => {
                     form.reset();
                     console.log(data);
                   });
-                navigate(from, { replace: true });
                 setLoading(false);
+                getUserToken(email);
               })
               .catch((error) => {
                 toast.error(error.message);
@@ -78,6 +78,17 @@ const Signup = () => {
       .catch((error) => {
         toast.error(error.message);
         setLoading(false);
+      });
+  };
+
+  const getUserToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate(from, { replace: true });
+        }
       });
   };
 

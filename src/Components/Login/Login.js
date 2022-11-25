@@ -19,12 +19,23 @@ const Login = () => {
       .then((result) => {
         toast.success("SuccessFully Login");
         form.reset();
-        navigate(from, { replace: true });
+        getUserToken(email);
         setLoading(false);
       })
       .catch((error) => {
         toast.error(error.message);
         setLoading(false);
+      });
+  };
+
+  const getUserToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate(from, { replace: true });
+        }
       });
   };
   return (

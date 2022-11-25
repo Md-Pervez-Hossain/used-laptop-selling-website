@@ -9,6 +9,7 @@ const Header = () => {
   const HandleLogOut = () => {
     logout()
       .then(() => {
+        localStorage.removeItem("accessToken");
         navigate("/");
       })
       .catch(() => {});

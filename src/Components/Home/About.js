@@ -3,11 +3,11 @@ import React from "react";
 const About = () => {
   return (
     <div>
-      <div className="hero md:my-32 ">
+      <div className="hero my-32 ">
         <div className="hero-content flex-col lg:flex-row-reverse gap-16">
           <img
             src="https://www.business-in-guangzhou.com/wp-content/uploads//2014/01/Stores-on-the-1st-Floor-of-Guangzhou-Xiyang-Second-hand-Computer-Market-2-1024x764.jpg"
-            className=" rounded-lg shadow-2xl"
+            className="md:max-w-sm rounded-lg shadow-2xl"
             alt=""
           />
           <div className="md:w-1/2">
