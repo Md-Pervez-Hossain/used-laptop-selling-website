@@ -15,7 +15,7 @@ const Advertisement = () => {
       });
   }, [user?.email]);
   return (
-    <div className="w-9/12 mx-auto my-16">
+    <div className="md:w-9/12 mx-auto my-16 p-4">
       <div className="grid md:grid-cols-3 gap-10">
         {advertise.map((advertisement) => (
           <DisplayAdvertisement

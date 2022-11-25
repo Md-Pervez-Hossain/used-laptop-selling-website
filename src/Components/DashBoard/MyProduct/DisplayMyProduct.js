@@ -27,7 +27,7 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-5 shadow-lg my-16">
+    <div className="bg-gray-100 p-5 shadow-lg ">
       <img src={image} alt="" />
       <p className="text-3xl font-bold my-3">{name}</p>
       <div className="flex justify-between items-center">

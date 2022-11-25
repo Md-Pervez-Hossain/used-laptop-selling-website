@@ -39,7 +39,7 @@ const MyProduct = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-3 gap-5">
         {myProducts.map((myProduct) => (
           <DisplayMyProduct
             key={myProduct._id}

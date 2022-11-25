@@ -15,15 +15,16 @@ const Header = () => {
   };
   return (
     <div className="bg-blue-400 text-white py-5">
-      <div className="w-9/12 mx-auto font-bold text-2xl ">
-        <div className="flex justify-between items-center">
+      <div className="w-9/12 mx-auto font-semibold text-2xl ">
+        <div className="flex justify-between items-center ">
           <div>
             <Link to="/">
               <img src={logo} alt="" className="h-14" />
             </Link>
           </div>
-          <div className="flex gap-5">
+          <div className="flex md:gap-5 menu menu-vertical lg:menu-horizontal">
             <Link to="/">Home</Link>
+            <Link to="/blog">Blog</Link>
             {user?.uid ? (
               <>
                 <Link to="/dashboard">DashBoard</Link>

@@ -2,10 +2,10 @@ import React from "react";
 
 const HeroBanner = () => {
   return (
-    <div className="w-9/12 mx-auto my-16">
-      <div className="flex justify-between items-center">
-        <div className="w-1/2">
-          <h2 className="text-7xl font-bold mb-4">
+    <div className="md:w-9/12 mx-auto md:my-16 my-8 p-4">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="md:w-1/2">
+          <h2 className="md:text-7xl text-5xl font-bold mb-4">
             Laptop For The <br /> Future
           </h2>
           <p className="mb-4">
@@ -17,7 +17,7 @@ const HeroBanner = () => {
           </button>
         </div>
 
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           <img
             src="https://cdn.thewirecutter.com/wp-content/media/2022/07/laptop-under-500-2048px-acer-1.jpg"
             alt=""

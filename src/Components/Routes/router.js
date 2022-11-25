@@ -11,6 +11,7 @@ import Mysellers from "../DashBoard/MySellers/Mysellers";
 import MyWishList from "../DashBoard/MyWishList/MyWishList";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Advertisement from "../Home/Advertisement/Advertisement";
+import Blog from "../Home/Blog/Blog";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/signup",

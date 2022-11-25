@@ -29,9 +29,9 @@ const LaptopCategories = () => {
     },
   ];
   return (
-    <div className="w-9/12 mx-auto">
+    <div className="md:w-9/12 mx-auto p-4">
       <div>
-        <h2 className="text-7xl font-bold text-center mb-10 ">
+        <h2 className="md:text-7xl text-4xl font-bold text-center mb-10 ">
           Laptop categories
         </h2>
         <p className="text-center mb-10 ">
@@ -41,7 +41,7 @@ const LaptopCategories = () => {
           etc.
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-10 text-center">
+      <div className="grid md:grid-cols-4 gap-10 text-center">
         {categories.map((category) => (
           <DisplayCategories
             key={category.id}

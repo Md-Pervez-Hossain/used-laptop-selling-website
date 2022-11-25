@@ -71,7 +71,7 @@ const AddProducts = () => {
     <div>
       <form onSubmit={handleAddProductSubmit}>
         <div className="bg-gray-100 p-16">
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5 ">
             <div>
               <input
                 name="name"
@@ -121,7 +121,7 @@ const AddProducts = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5">
             <div>
               <input
                 type="text"
