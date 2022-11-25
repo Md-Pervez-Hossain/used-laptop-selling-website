@@ -8,6 +8,8 @@ import MyBookings from "../DashBoard/MyBookings";
 import MyBuyers from "../DashBoard/MyBuyers/MyBuyers";
 import MyProduct from "../DashBoard/MyProduct/MyProduct";
 import Mysellers from "../DashBoard/MySellers/Mysellers";
+import MyWishList from "../DashBoard/MyWishList/MyWishList";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import Advertisement from "../Home/Advertisement/Advertisement";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -58,6 +61,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashBoard></DashBoard>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard/addservice",
@@ -78,6 +82,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/mysellers",
         element: <Mysellers></Mysellers>,
+      },
+      {
+        path: "/dashboard/mywishlist",
+        element: <MyWishList></MyWishList>,
       },
     ],
   },

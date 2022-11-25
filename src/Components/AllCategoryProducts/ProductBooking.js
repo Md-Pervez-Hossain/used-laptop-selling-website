@@ -11,6 +11,7 @@ const ProductBooking = () => {
     name,
     image,
     resellPrice,
+
     originalPrice,
     useTime,
     location,

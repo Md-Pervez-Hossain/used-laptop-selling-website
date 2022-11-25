@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DisplayAllCategory = ({ products }) => {
-  const { _id, name, resellPrice, originalPrice, image, booked } = products;
+  const { _id, name, resellPrice, originalPrice, image, time, booked } =
+    products;
   return (
     <div>
       {booked !== true && (
@@ -15,6 +16,9 @@ const DisplayAllCategory = ({ products }) => {
           <p className="font-bold">
             Original Price :{" "}
             <span className="font-normal"> {originalPrice}</span>
+          </p>
+          <p className="font-bold">
+            Posted : <span className="font-normal"> {time}</span>
           </p>
           <Link to={`/addproduct/${_id}`}>
             <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3">

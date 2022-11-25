@@ -45,6 +45,7 @@ const Signup = () => {
                   email,
                   password,
                   role,
+                  status: "unverified",
                 };
                 fetch("http://localhost:5000/users", {
                   method: "POST",

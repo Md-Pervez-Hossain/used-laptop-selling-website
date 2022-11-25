@@ -16,6 +16,8 @@ const UserRole = ({ usersRole }) => {
       {role === "Buyer" && (
         <>
           <Link to="myorders">My Orders</Link>
+          <br />
+          <Link to="mywishlist">My WishList</Link>
         </>
       )}
       {role === "Admin" && (

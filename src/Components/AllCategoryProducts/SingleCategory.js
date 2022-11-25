@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaCheckCircle } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../UseContex/AuthProvider";
 
 const SingleCategory = () => {
   const { user } = useContext(AuthContext);
+  const [verifyUser, setUserVerify] = useState([]);
   const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
   console.log(singleProduct);
@@ -18,9 +20,9 @@ const SingleCategory = () => {
     location,
     sellerName,
     productDetails,
-
     categoryProduct,
   } = singleProduct;
+  console.log(singleProduct);
   // const navigate = useNavigate();
   // navigate(`/addproducts/${productId}`);
 
@@ -68,6 +70,48 @@ const SingleCategory = () => {
       });
   };
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/mybuyers/Seller`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserVerify(data);
+        console.log(data);
+      });
+  }, [user?.email]);
+
+  const handleWishList = (id) => {
+    console.log(id);
+    const wishList = {
+      _id,
+      name,
+      image,
+      resellPrice,
+      originalPrice,
+      useTime,
+      location,
+      sellerName,
+      productDetails,
+      categoryProduct,
+      email: user?.email,
+    };
+
+    fetch("http://localhost:5000/wishlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishList),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Product Added To WishList");
+        console.log(data);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+  console.log(verifyUser);
   return (
     <div className="w-9/12 mx-auto my-16">
       <div className="flex justify-center items-center bg-gray-100 p-5 gap-10 ">
@@ -88,9 +132,23 @@ const SingleCategory = () => {
           <p className="text-xl font-bold mb-2">
             Location: <span className="font-normal">{location}</span>
           </p>
-          <p className="text-xl font-bold mb-2">
-            Seller Name : <span className="font-normal">{sellerName}</span>
-          </p>
+          <div className="flex items-center gap-2">
+            <div>
+              <p className="text-xl font-bold mb-2">
+                Seller Name : <span className="font-normal">{sellerName}</span>
+              </p>
+            </div>
+            <div>
+              {verifyUser?.slice(0, 1).map((verify) => (
+                <p className="text-xl font-bold mb-2" key={verify._id}>
+                  {verify.status === "verified" && (
+                    <FaCheckCircle className="text-blue-400"></FaCheckCircle>
+                  )}
+                </p>
+              ))}
+            </div>
+          </div>
+
           <p className="font-normal mb-2">{productDetails}</p>
 
           {/* The button to open modal */}
@@ -184,7 +242,10 @@ const SingleCategory = () => {
             </>
           )}
 
-          <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3">
+          <button
+            onClick={() => handleWishList(_id)}
+            className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3"
+          >
             Add To WishList
           </button>
           <Link to={`/addproducts/${categoryProduct}`}>

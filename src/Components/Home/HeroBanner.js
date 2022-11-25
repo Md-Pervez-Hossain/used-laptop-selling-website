@@ -12,7 +12,7 @@ const HeroBanner = () => {
             A laptop, laptop computer, or notebook computer is a small, portable
             personal computer with a screen and alphanumeric keyboard.
           </p>
-          <button className="bg-blue-400 px-3 py-3 text-white font-bold ">
+          <button className="bg-blue-400 px-3 py-3 text-white font-bold rounded-md ">
             Book Now
           </button>
         </div>

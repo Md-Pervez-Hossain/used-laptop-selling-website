@@ -18,6 +18,7 @@ const AddProducts = () => {
     const sellerName = form.sellerName.value;
     const productDetails = form.productDetails.value;
     const categoryProduct = form.categoryProduct.value;
+    const condition = form.condition.value;
     const time = new Date().toLocaleDateString();
     const formData = new FormData();
     formData.append("image", image);
@@ -42,6 +43,7 @@ const AddProducts = () => {
           sellerName,
           categoryProduct,
           productDetails,
+          condition,
           email: user?.email,
           time,
         };
@@ -74,6 +76,7 @@ const AddProducts = () => {
               <input
                 name="name"
                 type="text"
+                required
                 placeholder="Product name"
                 className="input w-full "
               />
@@ -85,6 +88,7 @@ const AddProducts = () => {
               <input
                 name="resellPrice"
                 type="text"
+                required
                 placeholder="Resell Price"
                 className="input w-full  "
               />
@@ -93,6 +97,7 @@ const AddProducts = () => {
               <input
                 type="text"
                 name="originalPrice"
+                required
                 placeholder="Original Price"
                 className="input w-full  "
               />
@@ -101,6 +106,7 @@ const AddProducts = () => {
               <input
                 type="text"
                 name="location"
+                required
                 placeholder="Location"
                 className="input w-full  "
               />
@@ -109,30 +115,46 @@ const AddProducts = () => {
               <input
                 type="text"
                 name="useTime"
+                required
                 placeholder="Uses time"
                 className="input w-full  "
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-3 gap-5">
             <div>
               <input
                 type="text"
+                defaultValue={user?.displayName}
+                readOnly
+                required
                 name="sellerName"
                 placeholder="Seller Name"
                 className="input  w-full my-4"
               />
             </div>
             <div>
-              <select name="categoryProduct" className="select w-full mt-4">
+              <select
+                name="categoryProduct"
+                className="select w-full mt-4"
+                required
+              >
                 <option>Hp</option>
                 <option>MacBook</option>
                 <option>Dell</option>
                 <option>Acer</option>
               </select>
             </div>
+            <div>
+              <select name="condition" className="select w-full mt-4" required>
+                <option>Excelent</option>
+                <option>Fair</option>
+                <option>Good</option>
+              </select>
+            </div>
           </div>
           <textarea
+            required
             className="textarea w-full"
             placeholder="Product Description"
             name="productDetails"

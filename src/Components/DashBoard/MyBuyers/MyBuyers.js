@@ -24,7 +24,8 @@ const MyBuyers = () => {
         .then((res) => res.json())
         .then((data) => {
           toast.success("Buyers Deleted");
-          console.log(data);
+          const remaining = myBuyers.filter((buyers) => buyers._id !== id);
+          setMyBuyers(remaining);
         })
         .catch((error) => {
           toast.error(error.message);
@@ -33,7 +34,7 @@ const MyBuyers = () => {
   };
   return (
     <div>
-      <h2>My Buyers : {myBuyers.length}</h2>
+      <h2 className="text-4xl font-bold my-5">My Buyers </h2>
       <table className="table w-full">
         <thead>
           <tr>

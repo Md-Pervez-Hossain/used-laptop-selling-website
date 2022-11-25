@@ -8,7 +8,7 @@ const DisplayCategories = ({ category }) => {
       <img src={img} alt="" />
       <h2 className="text-3xl font-bold my-5">{BrandName}</h2>
       <Link to={`/addproducts/${BrandName}`}>
-        <button className="bg-blue-400 px-3 py-3 font-bold text-xl text-white">
+        <button className="bg-blue-400 px-3 py-3 font-bold text-xl text-white rounded-md">
           See More
         </button>
       </Link>
