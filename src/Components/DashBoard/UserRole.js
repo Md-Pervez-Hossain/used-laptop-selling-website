@@ -18,6 +18,13 @@ const UserRole = ({ usersRole }) => {
           <Link to="myorders">My Orders</Link>
         </>
       )}
+      {role === "Admin" && (
+        <>
+          <Link to="mysellers">My Sellers</Link>
+          <br />
+          <Link to="mybuyers">My Buyers</Link>
+        </>
+      )}
     </div>
   );
 };

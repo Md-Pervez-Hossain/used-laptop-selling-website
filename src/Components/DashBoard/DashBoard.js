@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../Header/Header";
+import { AuthContext } from "../UseContex/AuthProvider";
 import UserRole from "./UserRole";
 
 const DashBoard = () => {
+  const { user } = useContext(AuthContext);
   const [userRole, setUserRole] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch(`http://localhost:5000/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserRole(data);
         console.log(data);
       });
-  }, []);
+  }, [user?.email]);
   console.log(userRole);
   return (
     <div>

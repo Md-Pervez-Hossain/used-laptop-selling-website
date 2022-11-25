@@ -5,7 +5,9 @@ import SingleCategory from "../AllCategoryProducts/SingleCategory";
 import AddProducts from "../DashBoard/AddProducts";
 import DashBoard from "../DashBoard/DashBoard";
 import MyBookings from "../DashBoard/MyBookings";
+import MyBuyers from "../DashBoard/MyBuyers/MyBuyers";
 import MyProduct from "../DashBoard/MyProduct/MyProduct";
+import Mysellers from "../DashBoard/MySellers/Mysellers";
 import Advertisement from "../Home/Advertisement/Advertisement";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
@@ -68,6 +70,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/myservice",
         element: <MyProduct></MyProduct>,
+      },
+      {
+        path: "/dashboard/mybuyers",
+        element: <MyBuyers></MyBuyers>,
+      },
+      {
+        path: "/dashboard/mysellers",
+        element: <Mysellers></Mysellers>,
       },
     ],
   },
