@@ -6,7 +6,11 @@ const MyBuyers = () => {
   const { user } = useContext(AuthContext);
   const [myBuyers, setMyBuyers] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/mybuyers/Buyer`)
+    fetch(`http://localhost:5000/mybuyers/Buyer`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setMyBuyers(data);

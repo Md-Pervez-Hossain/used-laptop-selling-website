@@ -16,6 +16,7 @@ import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -57,7 +58,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addproduct/:id",
-        element: <SingleCategory></SingleCategory>,
+        element: (
+          <PrivateRoute>
+            <SingleCategory></SingleCategory>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/addproduct/${params.id}`),
       },
@@ -65,7 +70,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoard></DashBoard>,
+    element: (
+      <PrivateRoute>
+        <DashBoard></DashBoard>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {

@@ -6,7 +6,8 @@ import { AuthContext } from "../UseContex/AuthProvider";
 
 const SingleCategory = () => {
   const { user } = useContext(AuthContext);
-  const [verifyUser, setUserVerify] = useState([]);
+  const [disable, setDisable] = useState(0);
+
   const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
   console.log(singleProduct);
@@ -38,6 +39,7 @@ const SingleCategory = () => {
     console.log({ name, email, productname, price, number, location });
 
     const bookingInfo = {
+      bookingId: _id,
       name,
       email,
       productname,
@@ -70,19 +72,8 @@ const SingleCategory = () => {
       });
   };
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/mybuyers/Seller`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserVerify(data);
-        console.log(data);
-      });
-  }, [user?.email]);
-
   const handleWishList = (id) => {
-    console.log(id);
     const wishList = {
-      _id,
       name,
       image,
       resellPrice,
@@ -95,7 +86,7 @@ const SingleCategory = () => {
       email: user?.email,
     };
 
-    fetch("http://localhost:5000/wishlist", {
+    fetch(`http://localhost:5000/wishlist/${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -110,8 +101,9 @@ const SingleCategory = () => {
       .catch((error) => {
         toast.error(error.message);
       });
+    setDisable(true);
   };
-  console.log(verifyUser);
+
   return (
     <div className="w-9/12 mx-auto my-16">
       <div className="flex justify-center items-center bg-gray-100 p-5 gap-10 ">
@@ -137,15 +129,6 @@ const SingleCategory = () => {
               <p className="text-xl font-bold mb-2">
                 Seller Name : <span className="font-normal">{sellerName}</span>
               </p>
-            </div>
-            <div>
-              {verifyUser?.slice(0, 1).map((verify) => (
-                <p className="text-xl font-bold mb-2" key={verify._id}>
-                  {verify.status === "verified" && (
-                    <FaCheckCircle className="text-blue-400"></FaCheckCircle>
-                  )}
-                </p>
-              ))}
             </div>
           </div>
 
@@ -244,6 +227,7 @@ const SingleCategory = () => {
 
           <button
             onClick={() => handleWishList(_id)}
+            disabled={disable}
             className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3"
           >
             Add To WishList

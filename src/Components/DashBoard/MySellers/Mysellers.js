@@ -4,7 +4,11 @@ import toast from "react-hot-toast";
 const Mysellers = () => {
   const [mySellers, setMySellers] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/mybuyers/Seller`)
+    fetch(`http://localhost:5000/mybuyers/Seller`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setMySellers(data);

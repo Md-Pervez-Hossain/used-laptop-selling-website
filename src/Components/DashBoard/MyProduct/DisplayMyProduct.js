@@ -9,12 +9,40 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
   const { _id, image, name, resellPrice, booked } = myProduct;
   const handleAdvertisement = (myProduct) => {
     console.log(myProduct);
+    const {
+      _id,
+      categoryProduct,
+      condition,
+      email,
+      image,
+      location,
+      originalPrice,
+      productDetails,
+      resellPrice,
+      sellerName,
+      time,
+      useTime,
+    } = myProduct;
+    const advertisementProductInfo = {
+      advertiseProductId: _id,
+      categoryProduct,
+      condition,
+      email,
+      image,
+      location,
+      originalPrice,
+      productDetails,
+      resellPrice,
+      sellerName,
+      time,
+      useTime,
+    };
     fetch("http://localhost:5000/advertisement", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(myProduct),
+      body: JSON.stringify(advertisementProductInfo),
     })
       .then((res) => res.json())
       .then((data) => {

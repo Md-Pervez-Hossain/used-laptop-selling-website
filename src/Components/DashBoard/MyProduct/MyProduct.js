@@ -6,8 +6,13 @@ import DisplayMyProduct from "./DisplayMyProduct";
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/myproduct/${user?.email}`)
+    fetch(`http://localhost:5000/myproduct/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setMyProducts(data);
@@ -35,6 +40,17 @@ const MyProduct = () => {
           toast.error(error.message);
         });
     }
+
+    fetch(`http://localhost:5000/advertisement/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
