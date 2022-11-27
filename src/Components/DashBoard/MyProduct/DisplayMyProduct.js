@@ -5,7 +5,7 @@ import { AuthContext } from "../../UseContex/AuthProvider";
 
 const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
   const { user } = useContext(AuthContext);
-  const [buttonDisbled, setButtonDisabled] = useState(false);
+  const [disable, setDisable] = useState(0);
   const { _id, image, name, resellPrice, booked } = myProduct;
   const handleAdvertisement = (myProduct) => {
     console.log(myProduct);
@@ -52,6 +52,7 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
       .catch((error) => {
         toast.error(error.message);
       });
+    setDisable(true);
   };
 
   return (
@@ -73,6 +74,7 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
                 <>
                   <p className="text-blue-400">Available</p>
                   <button
+                    disabled={disable}
                     onClick={() => handleAdvertisement(myProduct)}
                     className="bg-blue-400 px-4 py-2 text-white font-bold mt-2 rounded-md"
                   >

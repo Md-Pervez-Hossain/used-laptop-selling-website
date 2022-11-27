@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../UseContex/AuthProvider";
+import { FadeLoader } from "react-spinners";
 
 const AddProducts = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddProductSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const form = event.target;
     const name = form.name.value;
     const image = form.image.files[0];
@@ -57,13 +60,16 @@ const AddProducts = () => {
           .then((res) => res.json())
           .then((data) => {
             toast.success("Product Added");
+
             navigate("/dashboard/myservice");
             form.reset();
+            setIsLoading(false);
             console.log(data);
           });
       })
       .catch((error) => {
         toast.error(error.message);
+        setIsLoading(false);
       });
   };
 
@@ -159,9 +165,24 @@ const AddProducts = () => {
             placeholder="Product Description"
             name="productDetails"
           ></textarea>
-          <button className="w-full mt-4 bg-blue-400 text-white px-3 py-3 font-bold text-xl rounded-md">
-            Add Product
-          </button>
+          {isLoading ? (
+            <>
+              <FadeLoader
+                color={"#000000"}
+                loading={isLoading}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </>
+          ) : (
+            <>
+              {" "}
+              <button className="w-full mt-4 bg-blue-400 text-white px-3 py-3 font-bold text-xl rounded-md">
+                Add Product
+              </button>
+            </>
+          )}
         </div>
       </form>
     </div>
