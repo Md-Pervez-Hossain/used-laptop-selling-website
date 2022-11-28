@@ -8,8 +8,8 @@ live website link [https://vermillion-kangaroo-357c17.netlify.app/]
 
 ## About website
 
-- This is a Web Tech website
-- There are 6 Web Technology Course
+- This is a used-laptop Selling website
+- stripe payment method add
 - Dynanic Route
 - website data Provided via Api
 - single page Application
@@ -22,6 +22,6 @@ live website link [https://vermillion-kangaroo-357c17.netlify.app/]
 - React js
 - Hero Icons
 - React Icons
-- React-to-pdf
+- Mongodb
 - Node js
 - express js
