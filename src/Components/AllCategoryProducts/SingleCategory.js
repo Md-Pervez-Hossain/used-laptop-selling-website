@@ -103,6 +103,13 @@ const SingleCategory = () => {
       });
     setDisable(true);
   };
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.gmail}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, [user?.gmail]);
 
   return (
     <div className="w-9/12 mx-auto my-16">
@@ -187,7 +194,7 @@ const SingleCategory = () => {
                     </div>
                     <div>
                       <input
-                        defaultValue={resellPrice + " BDT"}
+                        defaultValue={resellPrice}
                         readOnly
                         name="price"
                         type="text"

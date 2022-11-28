@@ -1,8 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Mysellers = () => {
   const [mySellers, setMySellers] = useState([]);
+
   useEffect(() => {
     fetch(`http://localhost:5000/mybuyers/Seller`, {
       headers: {
@@ -42,7 +44,7 @@ const Mysellers = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("UserVerified");
-        console.log(data);
+        setMySellers(data);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -64,7 +66,7 @@ const Mysellers = () => {
             </tr>
           </thead>
           <tbody>
-            {mySellers.map((sellers, i) => (
+            {mySellers?.map((sellers, i) => (
               <tr key={sellers._id}>
                 <th>{i + 1}</th>
                 <td>
@@ -85,12 +87,23 @@ const Mysellers = () => {
                   </button>
                 </td>
                 <td>
-                  <button
-                    onClick={() => handleStatus(sellers._id)}
-                    className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md"
-                  >
-                    UnVarified
-                  </button>
+                  {sellers?.status === "verified" ? (
+                    <>
+                      {" "}
+                      <button className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md">
+                        Varified
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleStatus(sellers._id)}
+                        className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md"
+                      >
+                        UnVarified
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

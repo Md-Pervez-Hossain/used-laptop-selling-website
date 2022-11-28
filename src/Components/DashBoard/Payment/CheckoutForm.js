@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 const CheckoutForm = ({ booking }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { productname, price, _id } = booking;
+  const [success, setSuccess] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [successId, setSuccessId] = useState("");
+  const { price, bookingId, productname, _id } = booking;
+  console.log(booking);
   const stripe = useStripe();
   const elements = useElements();
-
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
@@ -41,21 +44,42 @@ const CheckoutForm = ({ booking }) => {
     } else {
       setCardError("");
     }
-
+    setProcessing(true);
+    setSuccess("");
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
-          billing_details: {
-            productname,
-            ProductId: _id,
-          },
         },
       });
 
     if (confirmError) {
       setCardError(confirmError.message);
+      return;
     }
+    if (paymentIntent.status === "succeeded") {
+      const payment = {
+        price,
+        bookingId: _id,
+        transTionId: paymentIntent.id,
+      };
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            setSuccess("Congratulation ! your payment SuccessFull");
+            setSuccessId(paymentIntent.id);
+            console.log(data);
+          }
+        });
+    }
+    setProcessing(false);
     console.log(paymentIntent);
     console.log(clientSecret);
   };
@@ -82,13 +106,23 @@ const CheckoutForm = ({ booking }) => {
         <button
           className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md my-3"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
       </form>
 
       <p className="text-2xl text-red-600 font-bold">{cardError}</p>
+      <div>
+        {success && (
+          <div>
+            <p className="text-blue-400 font-bold">{success}</p>
+            <p>
+              Tour Transtion id: <strong>{successId}</strong>
+            </p>
+          </div>
+        )}
+      </div>
     </>
   );
 };

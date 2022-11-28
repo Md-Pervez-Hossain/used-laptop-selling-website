@@ -77,11 +77,24 @@ const MyBookings = () => {
                 <td>{bookProduct.productname}</td>
                 <td>{bookProduct.price}</td>
                 <td>
-                  <Link to={`/dashboard/payment/${bookProduct._id}`}>
-                    <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
-                      Pay
-                    </button>
-                  </Link>
+                  {bookProduct.paid === true ? (
+                    <>
+                      {" "}
+                      <Link>
+                        <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
+                          Paid
+                        </button>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to={`/dashboard/payment/${bookProduct._id}`}>
+                        <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
+                          Pay
+                        </button>
+                      </Link>
+                    </>
+                  )}
                 </td>
                 <td>
                   <button
