@@ -79,7 +79,7 @@ const AddProducts = () => {
   return (
     <div>
       <form onSubmit={handleAddProductSubmit}>
-        <div className="bg-gray-100 p-16">
+        <div className="bg-gray-100 p-4">
           <div className="grid md:grid-cols-3 gap-5 ">
             <div>
               <input
@@ -164,7 +164,7 @@ const AddProducts = () => {
           </div>
           <textarea
             required
-            className="textarea w-full"
+            className="textarea w-full  mt-5"
             placeholder="Product Description"
             name="productDetails"
           ></textarea>

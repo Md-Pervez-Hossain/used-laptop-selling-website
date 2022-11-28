@@ -127,13 +127,15 @@ const SingleCategory = () => {
   }, [user?.email]);
 
   return (
-    <div className="w-9/12 mx-auto my-16">
-      <div className="flex justify-center items-center bg-gray-100 p-5 gap-10 ">
-        <div className="w-1/2">
+    <div className="md:w-9/12 mx-auto my-16">
+      <div className="flex flex-col md:flex-row justify-center items-center bg-gray-100 p-5 gap-10 ">
+        <div className="md:w-1/2">
           <img src={image} alt="" className="w-full" />
         </div>
-        <div className="w-1/2">
-          <h2 className="text-7xl font-bold mb-4 text-blue-400">{name}</h2>
+        <div className="md:w-1/2">
+          <h2 className="md:text-7xl text-5xl font-bold mb-4 text-blue-400">
+            {name}
+          </h2>
           <p className="text-xl font-bold mb-2">
             Resell Price : <span className="font-normal">{resellPrice}</span>{" "}
           </p>
@@ -253,12 +255,12 @@ const SingleCategory = () => {
           <button
             onClick={() => handleWishList(_id)}
             disabled={disable}
-            className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3"
+            className="bg-blue-400 px-4 py-2 font-bold text-xl rounded-md text-white mt-3 ml-3"
           >
             Add To WishList
           </button>
           <Link to={`/addproducts/${categoryProduct}`}>
-            <button className="bg-blue-400 px-4 py-2 font-bold text-xl text-white mt-3 ml-3">
+            <button className="bg-blue-400 px-4 py-2 rounded-md font-bold text-xl text-white mt-3 md:ml-3">
               Cancel
             </button>
           </Link>
