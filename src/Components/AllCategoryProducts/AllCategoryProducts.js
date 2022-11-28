@@ -14,8 +14,8 @@ const AllCategoryProducts = () => {
           </p>
         </>
       ) : (
-        <div className="w-9/12 mx-auto my-16">
-          <div className="grid grid-cols-4 gap-10">
+        <div className="md:w-9/12 mx-auto my-16">
+          <div className="grid md:grid-cols-4 gap-10">
             {allProducts.map((products) => (
               <DisplayAllCategory
                 products={products}
