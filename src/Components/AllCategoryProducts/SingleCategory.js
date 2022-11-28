@@ -7,6 +7,7 @@ import { AuthContext } from "../UseContex/AuthProvider";
 const SingleCategory = () => {
   const { user } = useContext(AuthContext);
   const [disable, setDisable] = useState(0);
+  const [userVerified, setUserVarified] = useState("");
 
   const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
@@ -104,12 +105,15 @@ const SingleCategory = () => {
     setDisable(true);
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.gmail}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, [user?.gmail]);
+    if (user?.email) {
+      fetch(`http://localhost:5000/users/${user?.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setUserVarified(data);
+        });
+    }
+  }, [user?.email]);
 
   return (
     <div className="w-9/12 mx-auto my-16">
@@ -137,6 +141,9 @@ const SingleCategory = () => {
                 Seller Name : <span className="font-normal">{sellerName}</span>
               </p>
             </div>
+            {userVerified.role === "verified" && (
+              <FaCheckCircle></FaCheckCircle>
+            )}
           </div>
 
           <p className="font-normal mb-2">{productDetails}</p>

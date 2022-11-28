@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 const Mysellers = () => {
   const [mySellers, setMySellers] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/mybuyers/Seller`, {
@@ -16,7 +17,7 @@ const Mysellers = () => {
         setMySellers(data);
         console.log(data);
       });
-  }, []);
+  }, [refresh]);
 
   const handleSellerRemove = (id) => {
     const agree = window.confirm("are you sure you want to delete");
@@ -44,7 +45,8 @@ const Mysellers = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("UserVerified");
-        setMySellers(data);
+        console.log(data);
+        setRefresh(!refresh);
       })
       .catch((error) => {
         toast.error(error.message);
