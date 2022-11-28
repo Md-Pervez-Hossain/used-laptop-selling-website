@@ -50,13 +50,16 @@ const AddProducts = () => {
           email: user?.email,
           time,
         };
-        fetch("http://localhost:5000/addproducts", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(productsInfo),
-        })
+        fetch(
+          "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(productsInfo),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             toast.success("Product Added");

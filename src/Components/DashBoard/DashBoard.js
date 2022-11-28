@@ -9,7 +9,9 @@ const DashBoard = () => {
   const { user } = useContext(AuthContext);
   const [userRole, setUserRole] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setUserRole(data);

@@ -6,11 +6,14 @@ const MyWishList = () => {
   const { user } = useContext(AuthContext);
   const [wishList, setWishList] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/wishlist/${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/wishlist/${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setWishList(data);

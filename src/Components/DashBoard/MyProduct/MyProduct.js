@@ -8,11 +8,14 @@ const MyProduct = () => {
   const [myProducts, setMyProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myproduct/${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/myproduct/${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyProducts(data);
@@ -22,9 +25,12 @@ const MyProduct = () => {
   const handleMyProductDelete = (id) => {
     const agree = window.confirm("Are you Sure ? Want to Delete");
     if (agree) {
-      fetch(`http://localhost:5000/deleteMyProduct/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/deleteMyProduct/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount) {
@@ -41,9 +47,12 @@ const MyProduct = () => {
         });
     }
 
-    fetch(`http://localhost:5000/advertisement/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/advertisement/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

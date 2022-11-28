@@ -7,11 +7,14 @@ const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [myBooking, setMyBooking] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/buyerBooking/${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyerBooking/${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -22,9 +25,12 @@ const MyBookings = () => {
   const handleMyorderDelete = (id) => {
     const agree = window.confirm("Are You Sure ? You Want to Delete");
     if (agree) {
-      fetch(`http://localhost:5000/mybooking/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/mybooking/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -41,9 +47,12 @@ const MyBookings = () => {
         });
     }
 
-    fetch(`http://localhost:5000/productupdate/${id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/productupdate/${id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

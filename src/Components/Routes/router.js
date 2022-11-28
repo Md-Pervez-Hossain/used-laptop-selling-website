@@ -49,13 +49,17 @@ export const router = createBrowserRouter([
         path: "/productbooking/:id",
         element: <ProductBooking></ProductBooking>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addproduct/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproduct/${params.id}`
+          ),
       },
       {
         path: "/addproducts/:id",
         element: <AllCategoryProducts></AllCategoryProducts>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addproducts/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts/${params.id}`
+          ),
       },
       {
         path: "/addproduct/:id",
@@ -65,7 +69,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addproduct/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproduct/${params.id}`
+          ),
       },
     ],
   },
@@ -106,7 +112,9 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/buyer-booking/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyer-booking/${params.id}`
+          ),
       },
     ],
   },

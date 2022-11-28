@@ -7,11 +7,14 @@ const Mysellers = () => {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mybuyers/Seller`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/mybuyers/Seller`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setMySellers(data);
@@ -22,9 +25,12 @@ const Mysellers = () => {
   const handleSellerRemove = (id) => {
     const agree = window.confirm("are you sure you want to delete");
     if (agree) {
-      fetch(`http://localhost:5000/deleteBuyers/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/deleteBuyers/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           toast.success("Buyers Deleted");
@@ -39,9 +45,12 @@ const Mysellers = () => {
   };
   const handleStatus = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/users/${id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users/${id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("UserVerified");

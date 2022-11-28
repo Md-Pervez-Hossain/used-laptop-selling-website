@@ -41,13 +41,16 @@ const ProductBooking = () => {
       location,
       image,
     };
-    fetch("http://localhost:5000/buyerBooking", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingInfo),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyerBooking",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookingInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Product Booked");
@@ -55,9 +58,12 @@ const ProductBooking = () => {
         console.log(data);
       });
 
-    fetch(`http://localhost:5000/addproducts/${_id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts/${_id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

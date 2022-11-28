@@ -49,13 +49,16 @@ const SingleCategory = () => {
       location,
       image,
     };
-    fetch("http://localhost:5000/buyerBooking", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingInfo),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyerBooking",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookingInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Product Booked");
@@ -63,9 +66,12 @@ const SingleCategory = () => {
         console.log(data);
       });
 
-    fetch(`http://localhost:5000/addproducts/${_id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts/${_id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -87,13 +93,16 @@ const SingleCategory = () => {
       email: user?.email,
     };
 
-    fetch(`http://localhost:5000/wishlist/${user?.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(wishList),
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/wishlist/${user?.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(wishList),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Product Added To WishList");
@@ -106,7 +115,9 @@ const SingleCategory = () => {
   };
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/users/${user?.email}`)
+      fetch(
+        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users/${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -226,7 +237,7 @@ const SingleCategory = () => {
                       />
                     </div>
                     <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
-                      Book Now
+                      Book Nowwwww
                     </button>
                   </form>
                   <div className="modal-action">

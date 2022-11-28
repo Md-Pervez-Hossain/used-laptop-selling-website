@@ -10,14 +10,16 @@ const Advertisement = () => {
   const { data: queryAdvertisement = [] } = useQuery({
     queryKey: ["advertisement"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertisement");
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/advertisement"
+      );
       const data = await res.json();
       return data;
     },
   });
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/advertisement`)
+  //   fetch(`https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/advertisement`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setAdvertise(data);

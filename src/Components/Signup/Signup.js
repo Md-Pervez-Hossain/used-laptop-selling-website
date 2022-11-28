@@ -53,16 +53,20 @@ const Signup = () => {
                   role,
                   status: "unverified",
                 };
-                fetch("http://localhost:5000/users", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(signupInfo),
-                })
+                fetch(
+                  "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users",
+                  {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify(signupInfo),
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     toast.success("User SuccessFully Created");
+                    getUserToken(email);
                     form.reset();
                     setIsLoading(false);
                     console.log(data);
@@ -71,7 +75,7 @@ const Signup = () => {
                     toast.error(error.message);
                     setIsLoading(false);
                   });
-                getUserToken(email);
+
                 form.reset();
               })
               .catch((error) => {
@@ -105,13 +109,16 @@ const Signup = () => {
           status: "unverified",
           role: "Buyer",
         };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(signupInfo),
-        })
+        fetch(
+          "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(signupInfo),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             toast.success("User SuccessFully Created");
@@ -131,9 +138,12 @@ const Signup = () => {
   };
 
   const getUserToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/jwt?email=${email}`
+    )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
           navigate(from, { replace: true });

@@ -6,11 +6,14 @@ const MyBuyers = () => {
   const { user } = useContext(AuthContext);
   const [myBuyers, setMyBuyers] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/mybuyers/Buyer`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/mybuyers/Buyer`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyBuyers(data);
@@ -22,9 +25,12 @@ const MyBuyers = () => {
     console.log(id);
     const agree = window.confirm("are you sure you want to delete");
     if (agree) {
-      fetch(`http://localhost:5000/deleteBuyers/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/deleteBuyers/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           toast.success("Buyers Deleted");

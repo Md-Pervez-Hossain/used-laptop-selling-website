@@ -37,13 +37,16 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
       time,
       useTime,
     };
-    fetch("http://localhost:5000/advertisement", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(advertisementProductInfo),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/advertisement",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(advertisementProductInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Start Advertisement");
