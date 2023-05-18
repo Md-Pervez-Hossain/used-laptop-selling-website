@@ -1,16 +1,33 @@
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const DisplayCategories = ({ category }) => {
   const { BrandName, img } = category;
   return (
-    <div className="bg-gray-100 p-5 shadow-xl">
-      <img src={img} alt="" />
-      <h2 className="text-3xl font-bold my-5">{BrandName}</h2>
+    <div
+      data-aos="fade-up"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-mirror="true"
+      data-aos-once="false"
+    >
       <Link to={`/addproducts/${BrandName}`}>
-        <button className="bg-blue-400 px-3 py-3 font-bold text-xl text-white rounded-md">
-          See More
-        </button>
+        <div className="bg-gray-100 p-5 hover:shadow-xl hover:text-blue-400  duration-500">
+          <div
+            style={{
+              backgroundImage: `url(${img})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              height: "200px",
+            }}
+          ></div>
+
+          <button className=" font-bold text-xl mt-3  rounded-md">
+            {BrandName}
+          </button>
+        </div>
       </Link>
     </div>
   );

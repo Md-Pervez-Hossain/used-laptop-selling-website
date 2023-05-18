@@ -21,10 +21,12 @@ const DashBoard = () => {
   console.log(userRole);
   return (
     <div>
-      <Header></Header>
-      <div className="md:w-9/12 mx-auto">
+      <div className="md:w-9/12 mx-auto my-16">
+        <Link to="/">
+          <h2 className="mb-5 text-2xl font-bold">Logo</h2>
+        </Link>
         <div className="flex flex-col md:flex-row gap-10  ">
-          <div className="text-3xl font-bold bg-gray-100  px-10 py-5">
+          <div className="text-xl font-bold">
             {userRole?.map((usersRole) => (
               <UserRole key={usersRole._id} usersRole={usersRole}></UserRole>
             ))}
@@ -34,7 +36,6 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 };

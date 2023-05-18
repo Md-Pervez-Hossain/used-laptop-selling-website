@@ -128,29 +128,47 @@ const SingleCategory = () => {
 
   return (
     <div className="md:w-9/12 mx-auto my-16">
-      <div className="flex flex-col md:flex-row justify-center items-center bg-gray-100 p-5 gap-10 ">
-        <div className="md:w-1/2">
-          <img src={image} alt="" className="w-full" />
+      <div className="flex flex-col md:flex-row justify-center items-center  p-5 gap-10 ">
+        <div
+          data-aos="fade-right"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          className="md:w-1/2"
+        >
+          <div
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+            className="bg-cover bg-no-repeat bg-center h-[400px]"
+          ></div>
         </div>
-        <div className="md:w-1/2">
-          <h2 className="md:text-7xl text-5xl font-bold mb-4 text-blue-400">
-            {name}
-          </h2>
-          <p className="text-xl font-bold mb-2">
+        <div
+          data-aos="fade-left"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          className="md:w-1/2"
+        >
+          <h2 className="md:text-3xl text-5xl font-bold mb-4 ">{name}</h2>
+          <p className="font-normal mb-2">{productDetails}</p>
+          <p className=" font-bold ">
             Resell Price : <span className="font-normal">{resellPrice}</span>{" "}
           </p>
-          <p className="text-xl font-bold mb-2">
+          <p className="font-bold ">
             OriginalPrice : <span className="font-normal">{originalPrice}</span>{" "}
           </p>
-          <p className="text-xl font-bold mb-2">
+          <p className="font-bold ">
             Uses : <span className="font-normal">{useTime} month</span>
           </p>
-          <p className="text-xl font-bold mb-2">
+          <p className=" font-bold ">
             Location: <span className="font-normal">{location}</span>
           </p>
           <div className="flex items-center gap-2">
             <div>
-              <p className="text-xl font-bold mb-2">
+              <p className=" font-bold ">
                 Seller Name : <span className="font-normal">{sellerName}</span>
               </p>
             </div>
@@ -159,111 +177,108 @@ const SingleCategory = () => {
             )}
           </div>
 
-          <p className="font-normal mb-2">{productDetails}</p>
-
-          {/* The button to open modal */}
-          <label htmlFor="Booking-modal" className="btn">
-            Book Now
-          </label>
-
-          {/* Put this part before </body> tag */}
-          {openModal === null && (
+          {user?.email !== "Admin" ? (
+            <></>
+          ) : (
             <>
-              <input
-                type="checkbox"
-                id="Booking-modal"
-                className="modal-toggle"
-              />
-              <div className="modal">
-                <div className="modal-box">
-                  <h2 className="text-4xl font-bold my-3 text-blue-400">
-                    Fill The Form For <br /> Booking
-                  </h2>
-                  <form onSubmit={handleBookNow}>
-                    <div>
-                      <input
-                        defaultValue={user?.displayName}
-                        readOnly
-                        required
-                        name="name"
-                        type="text"
-                        placeholder="Type here"
-                        className="input input-bordered w-full  mb-5"
-                      />
+              {" "}
+              <label htmlFor="Booking-modal" className="btn">
+                Book Now
+              </label>
+              {/* Put this part before </body> tag */}
+              {openModal === null && (
+                <>
+                  <input
+                    type="checkbox"
+                    id="Booking-modal"
+                    className="modal-toggle"
+                  />
+                  <div className="modal">
+                    <div className="modal-box">
+                      <h2 className="text-4xl font-bold my-3 text-blue-400">
+                        Fill The Form For <br /> Booking
+                      </h2>
+                      <form onSubmit={handleBookNow}>
+                        <div>
+                          <input
+                            defaultValue={user?.displayName}
+                            readOnly
+                            required
+                            name="name"
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered w-full  mb-5"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            defaultValue={user?.email}
+                            readOnly
+                            required
+                            name="email"
+                            type="text"
+                            placeholder="Email"
+                            className="input input-bordered w-full mb-5 "
+                          />
+                        </div>
+                        <div>
+                          <input
+                            defaultValue={name}
+                            readOnly
+                            name="productname"
+                            type="text"
+                            placeholder="Product Name"
+                            className="input input-bordered w-full  mb-5"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            defaultValue={resellPrice}
+                            readOnly
+                            name="price"
+                            type="text"
+                            placeholder="Price"
+                            className="input input-bordered w-full  mb-5"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            name="number"
+                            type="text"
+                            placeholder="Enter Your Number"
+                            className="input input-bordered w-full  mb-5"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            name="location"
+                            type="text"
+                            placeholder="Enter Meeting Location"
+                            className="input input-bordered w-full  mb-5"
+                          />
+                        </div>
+                        <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
+                          Book Nowwwww
+                        </button>
+                      </form>
+                      <div className="modal-action">
+                        <label htmlFor="Booking-modal" className="btn">
+                          Cancel
+                        </label>
+                      </div>
                     </div>
-                    <div>
-                      <input
-                        defaultValue={user?.email}
-                        readOnly
-                        required
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        className="input input-bordered w-full mb-5 "
-                      />
-                    </div>
-                    <div>
-                      <input
-                        defaultValue={name}
-                        readOnly
-                        name="productname"
-                        type="text"
-                        placeholder="Product Name"
-                        className="input input-bordered w-full  mb-5"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        defaultValue={resellPrice}
-                        readOnly
-                        name="price"
-                        type="text"
-                        placeholder="Price"
-                        className="input input-bordered w-full  mb-5"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        name="number"
-                        type="text"
-                        placeholder="Enter Your Number"
-                        className="input input-bordered w-full  mb-5"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        name="location"
-                        type="text"
-                        placeholder="Enter Meeting Location"
-                        className="input input-bordered w-full  mb-5"
-                      />
-                    </div>
-                    <button className="bg-blue-400 px-3 py-3 text-white font-bold w-full rounded-md">
-                      Book Nowwwww
-                    </button>
-                  </form>
-                  <div className="modal-action">
-                    <label htmlFor="Booking-modal" className="btn">
-                      Cancel
-                    </label>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
+              <button
+                onClick={() => handleWishList(_id)}
+                disabled={disable}
+                className="bg-blue-400 px-4 py-2 font-bold text-xl rounded-md text-white mt-3 ml-3"
+              >
+                Add To WishList
+              </button>
             </>
           )}
-
-          <button
-            onClick={() => handleWishList(_id)}
-            disabled={disable}
-            className="bg-blue-400 px-4 py-2 font-bold text-xl rounded-md text-white mt-3 ml-3"
-          >
-            Add To WishList
-          </button>
-          <Link to={`/addproducts/${categoryProduct}`}>
-            <button className="bg-blue-400 px-4 py-2 rounded-md font-bold text-xl text-white mt-3 md:ml-3">
-              Cancel
-            </button>
-          </Link>
         </div>
       </div>
     </div>

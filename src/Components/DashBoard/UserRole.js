@@ -1,30 +1,71 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const UserRole = ({ usersRole }) => {
   const { role } = usersRole;
   console.log(role);
   return (
     <div>
-      {role === "Seller" && (
+      {role === "Seller" ? (
         <>
-          <Link to="addservice">Add Products</Link>
-          <br />
-          <Link to="myservice">My Products</Link>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="addservice"
+          >
+            Add Products
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="myservice"
+          >
+            My Products
+          </NavLink>
         </>
+      ) : (
+        <></>
       )}
       {role === "Buyer" && (
         <>
-          <Link to="myorders">My Orders</Link>
-          <br />
-          <Link to="mywishlist">My WishList</Link>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="myorders"
+          >
+            My Orders
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="mywishlist"
+          >
+            My WishList
+          </NavLink>
         </>
       )}
       {role === "Admin" && (
         <>
-          <Link to="mysellers">My Sellers</Link>
-          <br />
-          <Link to="mybuyers">My Buyers</Link>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="mysellers"
+          >
+            <p>My Sellers</p>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+            }
+            to="mybuyers"
+          >
+            <p>My Buyers</p>
+          </NavLink>
         </>
       )}
     </div>

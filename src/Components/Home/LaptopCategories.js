@@ -30,8 +30,14 @@ const LaptopCategories = () => {
   ];
   return (
     <div className="md:w-9/12 mx-auto p-4">
-      <div>
-        <h2 className="md:text-7xl text-4xl font-bold text-center mb-10 ">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-mirror="true"
+        data-aos-once="false"
+      >
+        <h2 className="md:text-4xl text-4xl font-bold text-center mb-5 ">
           Laptop categories
         </h2>
         <p className="text-center mb-10 ">
@@ -41,8 +47,8 @@ const LaptopCategories = () => {
           etc.
         </p>
       </div>
-      <div className="grid md:grid-cols-4 gap-10 text-center">
-        {categories.map((category) => (
+      <div className="grid md:grid-cols-4 gap-10">
+        {categories?.map((category) => (
           <DisplayCategories
             key={category.id}
             category={category}

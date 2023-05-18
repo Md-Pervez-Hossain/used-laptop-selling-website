@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../UseContex/AuthProvider";
 
 const MyBookings = () => {
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const [myBooking, setMyBooking] = useState([]);
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyerBooking/${user?.email}`,
       {
@@ -19,6 +21,11 @@ const MyBookings = () => {
       .then((data) => {
         console.log(data);
         setMyBooking(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
       });
   }, [user?.email]);
 
@@ -64,60 +71,71 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Product Image</th>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Payment</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {myBooking?.map((bookProduct, i) => (
-              <tr key={i}>
-                <th>{i + 1}</th>
-                <td>
-                  <img src={bookProduct.image} alt="" className="h-24" />
-                </td>
-                <td>{bookProduct.productname}</td>
-                <td>{bookProduct.price}</td>
-                <td>
-                  {bookProduct.paid === true ? (
-                    <>
-                      {" "}
-                      <Link>
-                        <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
-                          Paid
-                        </button>
-                      </Link>
-                    </>
-                  ) : (
-                    <>
-                      <Link to={`/dashboard/payment/${bookProduct._id}`}>
-                        <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
-                          Pay
-                        </button>
-                      </Link>
-                    </>
-                  )}
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleMyorderDelete(bookProduct._id)}
-                    className="bg-blue-400 px-4 py-2 text-white font-bold  rounded-md"
-                  >
-                    Order Cancel
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {loading ? (
+        <>
+          <div className="flex justify-center items-center h-screen">
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-400"></div>
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className="overflow-x-auto">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Product Image</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Payment</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {myBooking?.map((bookProduct, i) => (
+                  <tr key={i}>
+                    <th>{i + 1}</th>
+                    <td>
+                      <img src={bookProduct.image} alt="" className="h-24" />
+                    </td>
+                    <td>{bookProduct.productname}</td>
+                    <td>{bookProduct.price}</td>
+                    <td>
+                      {bookProduct.paid === true ? (
+                        <>
+                          {" "}
+                          <Link>
+                            <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
+                              Paid
+                            </button>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <Link to={`/dashboard/payment/${bookProduct._id}`}>
+                            <button className="bg-blue-400 px-4 py-2 text-white font-bold rounded-md ">
+                              Pay
+                            </button>
+                          </Link>
+                        </>
+                      )}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => handleMyorderDelete(bookProduct._id)}
+                        className="bg-blue-400 px-4 py-2 text-white font-bold  rounded-md"
+                      >
+                        Order Cancel
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };

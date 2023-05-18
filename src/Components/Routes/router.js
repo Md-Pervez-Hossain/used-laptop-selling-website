@@ -56,22 +56,22 @@ export const router = createBrowserRouter([
       {
         path: "/addproducts/:id",
         element: <AllCategoryProducts></AllCategoryProducts>,
-        loader: ({ params }) =>
+        loader: async ({ params }) =>
           fetch(
             `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts/${params.id}`
           ),
       },
       {
         path: "/addproduct/:id",
+        loader: async ({ params }) =>
+          fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproduct/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <SingleCategory></SingleCategory>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(
-            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproduct/${params.id}`
-          ),
       },
     ],
   },

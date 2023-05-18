@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const DisplayAdvertisement = ({ advertisement }) => {
@@ -16,19 +17,41 @@ const DisplayAdvertisement = ({ advertisement }) => {
     email,
     time,
   } = advertisement;
+  console.log(advertisement);
   return (
-    <div className="bg-gray-100 p-5 shadow-xl">
-      <img src={image} alt="" />
-      <p className="text-3xl font-bold my-2">{name}</p>
-      <p className="font-bold">
-        Resell Price : <span className="font-normal"> {resellPrice}</span>{" "}
+    <div
+      data-aos="fade-left"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-mirror="true"
+      data-aos-once="false"
+      className="bg-gray-100 p-5 hover:shadow-xl duration-500"
+    >
+      <div
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "150px",
+        }}
+      ></div>
+      <p className="text-xl font-bold mb-2 mt-4">{categoryProduct}</p>
+      <p className="mb-1">
+        {productDetails.length >= 50 ? (
+          <>{`${productDetails.slice(0, 50)} ...`}</>
+        ) : (
+          <>{productDetails}</>
+        )}
       </p>
       <p className="font-bold">
-        Original Price : <span className="font-normal">{originalPrice}</span>{" "}
+        Price : <span className="font-normal"> {resellPrice} BDT</span>{" "}
       </p>
+
       <Link to={`/addproduct/${_id}`}>
-        <button className="bg-blue-400 px-3 py-3 font-bold text-xl text-white mt-3 rounded-md">
-          Details
+        <button className="  font-bold  rounded-md">
+          Read More{" "}
+          <FaArrowRight className="inline-block text-[14px]"></FaArrowRight>
         </button>
       </Link>
     </div>

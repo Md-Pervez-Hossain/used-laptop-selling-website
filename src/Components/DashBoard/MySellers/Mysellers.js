@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaCheckCircle, FaQuoteRight, FaTrash, FaUnlock } from "react-icons/fa";
 
 const Mysellers = () => {
   const [mySellers, setMySellers] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/mybuyers/Seller`,
       {
@@ -19,6 +22,11 @@ const Mysellers = () => {
       .then((data) => {
         setMySellers(data);
         console.log(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
       });
   }, [refresh]);
 
@@ -63,64 +71,80 @@ const Mysellers = () => {
   };
   return (
     <div>
-      <div className="overflow-x-auto">
-        <h2 className="text-4xl font-bold my-5">My Sellers</h2>
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {mySellers?.map((sellers, i) => (
-              <tr key={sellers._id}>
-                <th>{i + 1}</th>
-                <td>
-                  <img
-                    src={sellers.image}
-                    alt=""
-                    className="h-16 rounded-full"
-                  />
-                </td>
-                <td>{sellers.name}</td>
-                <td>{sellers.email}</td>
-                <td>
-                  <button
-                    onClick={() => handleSellerRemove(sellers._id)}
-                    className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md"
-                  >
-                    Remove
-                  </button>
-                </td>
-                <td>
-                  {sellers?.status === "verified" ? (
-                    <>
-                      {" "}
-                      <button className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md">
-                        Varified
-                      </button>
-                    </>
-                  ) : (
-                    <>
+      {loading ? (
+        <>
+          {" "}
+          <div className="flex justify-center items-center h-screen">
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-400"></div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="overflow-x-auto">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mySellers?.map((sellers, i) => (
+                  <tr key={sellers._id}>
+                    <th>{i + 1}</th>
+                    <td>
+                      <img
+                        src={sellers.image}
+                        alt=""
+                        className="h-16 rounded-full"
+                      />
+                    </td>
+                    <td>{sellers.name}</td>
+                    <td>{sellers.email}</td>
+                    <td>
                       <button
-                        onClick={() => handleStatus(sellers._id)}
-                        className="bg-blue-400 font-bold text-xl px-4 py-2 text-white rounded-md"
+                        onClick={() => handleSellerRemove(sellers._id)}
+                        className=" font-bold  rounded-md"
                       >
-                        UnVarified
+                        <FaTrash className="inline-block text-[14px] mb-1"></FaTrash>{" "}
+                        Delete
                       </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                    </td>
+                    <td>
+                      {sellers?.status === "verified" ? (
+                        <>
+                          {" "}
+                          <button className=" font-bold  text-blue-400  rounded-md">
+                            {" "}
+                            <FaCheckCircle className=" text-blue-400 inline-block text-[14px] mb-1">
+                              {" "}
+                            </FaCheckCircle>{" "}
+                            Varified
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleStatus(sellers._id)}
+                            className="font-bold  rounded-md"
+                          >
+                            <FaUnlock className="  inline-block text-[14px] mb-1"></FaUnlock>{" "}
+                            UnVarified
+                          </button>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };
