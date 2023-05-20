@@ -1,5 +1,12 @@
 import React from "react";
+import {
+  FaAd,
+  FaRegPlusSquare,
+  FaUserAlt,
+  FaWeightHanging,
+} from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import DashBoadCommonInfo from "./DashBoadCommonInfo";
 
 const UserRole = ({ usersRole }) => {
   const { role } = usersRole;
@@ -10,19 +17,27 @@ const UserRole = ({ usersRole }) => {
         <>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="addservice"
           >
-            Add Products
+            <p className="mb-2">
+              {" "}
+              <FaRegPlusSquare className="inline-block mb-2 mr-2"></FaRegPlusSquare>{" "}
+              Add Products
+            </p>
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="myservice"
           >
-            My Products
+            <p className="mb-2">
+              {" "}
+              <FaWeightHanging className="inline-block mb-2 mr-2"></FaWeightHanging>{" "}
+              My Products
+            </p>
           </NavLink>
         </>
       ) : (
@@ -32,7 +47,7 @@ const UserRole = ({ usersRole }) => {
         <>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="myorders"
           >
@@ -40,7 +55,7 @@ const UserRole = ({ usersRole }) => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="mywishlist"
           >
@@ -52,19 +67,27 @@ const UserRole = ({ usersRole }) => {
         <>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="mysellers"
           >
-            <p>My Sellers</p>
+            <p className="mb-2">
+              {" "}
+              <FaUserAlt className="inline-block mb-2 mr-2"></FaUserAlt> My
+              Sellers
+            </p>
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-blue-400 font-bold" : "text-black-500 font-thin"
+              isActive ? "text-blue-400 font-bold" : "text-black-500 "
             }
             to="mybuyers"
           >
-            <p>My Buyers</p>
+            <p className="mb-2">
+              {" "}
+              <FaUserAlt className="inline-block mb-2 mr-2"></FaUserAlt> My
+              Buyers
+            </p>
           </NavLink>
         </>
       )}

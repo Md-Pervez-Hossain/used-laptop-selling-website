@@ -1,12 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../UseContex/AuthProvider";
-import { FaTrash } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaTrash } from "react-icons/fa";
 
 const MyBuyers = () => {
   const { user } = useContext(AuthContext);
   const [myBuyers, setMyBuyers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [previous, setPrevious] = useState(0);
+  const [next, setNext] = useState(6);
+  //   const [reviews, setReviews] = useState("");
+
+  const handlePrevious = () => {
+    console.log("Clicked previous");
+    if (previous > 0) {
+      setPrevious(previous - 6);
+      setNext(next - 6);
+    }
+  };
+  const handleNext = () => {
+    setPrevious(previous + 6);
+    setNext(next + 6);
+  };
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -60,43 +75,55 @@ const MyBuyers = () => {
         </>
       ) : (
         <>
-          {" "}
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myBuyers.map((buyers, i) => (
-                <tr key={buyers._id}>
-                  <th>{i + 1}</th>
-                  <td>
-                    <img
-                      src={buyers.image}
-                      alt=""
-                      className="h-16 rounded-full"
-                    />
-                  </td>
-                  <td>{buyers.name}</td>
-                  <td>{buyers.email}</td>
-                  <td>
-                    <button
-                      onClick={() => handleBuyersRemove(buyers._id)}
-                      className=" font-bold  rounded-md"
-                    >
-                      <FaTrash className="inline-block text-[14px] mb-1"></FaTrash>{" "}
-                      Delete
-                    </button>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {myBuyers?.slice(previous, next).map((buyers, i) => (
+                  <tr key={buyers._id}>
+                    <th>{i + 1}</th>
+                    <td>
+                      <img
+                        src={buyers.image}
+                        alt=""
+                        className="h-16 rounded-full"
+                      />
+                    </td>
+                    <td>{buyers.name}</td>
+                    <td>{buyers.email}</td>
+                    <td>
+                      <button
+                        onClick={() => handleBuyersRemove(buyers._id)}
+                        className=" font-bold  rounded-md"
+                      >
+                        <FaTrash className="inline-block text-[14px] mb-1"></FaTrash>{" "}
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="flex items-end justify-end gap-2">
+              <button onClick={() => handlePrevious()}>
+                <FaArrowLeft></FaArrowLeft>
+              </button>
+              <button
+                disabled={next > myBuyers?.length || next === myBuyers?.length}
+                onClick={() => handleNext()}
+              >
+                <FaArrowRight></FaArrowRight>
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>

@@ -1,12 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaCheckCircle, FaQuoteRight, FaTrash, FaUnlock } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCheckCircle,
+  FaQuoteRight,
+  FaTrash,
+  FaUnlock,
+} from "react-icons/fa";
 
 const Mysellers = () => {
   const [mySellers, setMySellers] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [previous, setPrevious] = useState(0);
+  const [next, setNext] = useState(6);
+  //   const [reviews, setReviews] = useState("");
+
+  const handlePrevious = () => {
+    console.log("Clicked previous");
+    if (previous > 0) {
+      setPrevious(previous - 6);
+      setNext(next - 6);
+    }
+  };
+  const handleNext = () => {
+    setPrevious(previous + 6);
+    setNext(next + 6);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -93,7 +116,7 @@ const Mysellers = () => {
                 </tr>
               </thead>
               <tbody>
-                {mySellers?.map((sellers, i) => (
+                {mySellers?.slice(previous, next).map((sellers, i) => (
                   <tr key={sellers._id}>
                     <th>{i + 1}</th>
                     <td>
@@ -142,6 +165,17 @@ const Mysellers = () => {
                 ))}
               </tbody>
             </table>
+            <div className="flex items-end justify-end gap-2">
+              <button onClick={() => handlePrevious()}>
+                <FaArrowLeft></FaArrowLeft>
+              </button>
+              <button
+                disabled={next > mySellers?.length}
+                onClick={() => handleNext()}
+              >
+                <FaArrowRight></FaArrowRight>
+              </button>
+            </div>
           </div>
         </>
       )}

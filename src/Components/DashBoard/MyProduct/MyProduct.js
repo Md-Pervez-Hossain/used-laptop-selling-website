@@ -64,15 +64,25 @@ const MyProduct = () => {
 
   return (
     <div>
-      <div className="grid md:grid-cols-3 gap-5">
-        {myProducts.map((myProduct) => (
-          <DisplayMyProduct
-            key={myProduct._id}
-            myProduct={myProduct}
-            handleMyProductDelete={handleMyProductDelete}
-          ></DisplayMyProduct>
-        ))}
-      </div>
+      {myProducts?.length > 0 ? (
+        <>
+          <div className="grid md:grid-cols-3 gap-5">
+            {myProducts.map((myProduct) => (
+              <DisplayMyProduct
+                key={myProduct._id}
+                myProduct={myProduct}
+                handleMyProductDelete={handleMyProductDelete}
+              ></DisplayMyProduct>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <p className="text-2xl font-bold">Product Page Empaty</p>
+          </div>
+        </>
+      )}
     </div>
   );
 };

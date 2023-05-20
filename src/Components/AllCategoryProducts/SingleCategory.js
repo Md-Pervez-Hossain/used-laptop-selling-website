@@ -6,6 +6,7 @@ import { AuthContext } from "../UseContex/AuthProvider";
 
 const SingleCategory = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const [disable, setDisable] = useState(0);
   const [userVerified, setUserVarified] = useState("");
 
@@ -177,7 +178,7 @@ const SingleCategory = () => {
             )}
           </div>
 
-          {user?.email !== "Admin" ? (
+          {user?.email === "Admin" && user?.email === "Seller" ? (
             <></>
           ) : (
             <>
