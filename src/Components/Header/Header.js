@@ -30,32 +30,46 @@ const Header = () => {
             <Link to="/blog" className="text-white font-bold">
               Blog
             </Link>
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0}>
-                <img
-                  src={user?.photoURL}
-                  alt=""
-                  className="w-12 h-12 rounded-full"
-                />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  {user?.uid ? (
-                    <>
-                      <Link to="/dashboard">DashBoard</Link>
-                      <Link onClick={HandleLogOut}>Logout</Link>
-                    </>
-                  ) : (
-                    <>
-                      <Link to="/login">Login</Link>
-                    </>
-                  )}
-                </li>
-              </ul>
-            </div>
+            {user?.email ? (
+              <></>
+            ) : (
+              <>
+                <Link to="/login" className="text-white font-bold">
+                  Login
+                </Link>
+              </>
+            )}
+            {user?.email && user?.uid ? (
+              <>
+                {" "}
+                <div className="dropdown dropdown-end">
+                  <label tabIndex={0}>
+                    <img
+                      src={user?.photoURL}
+                      alt=""
+                      className="w-12 h-12 rounded-full"
+                    />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      {user?.uid ? (
+                        <>
+                          <Link to="/dashboard">DashBoard</Link>
+                          <Link onClick={HandleLogOut}>Logout</Link>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

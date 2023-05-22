@@ -77,116 +77,119 @@ const AddProducts = () => {
 
   return (
     <div>
-      <form onSubmit={handleAddProductSubmit}>
-        <div className="bg-gray-100 p-4">
-          <div className="grid md:grid-cols-3 gap-5 ">
-            <div>
-              <input
-                name="name"
-                type="text"
-                required
-                placeholder="Product name"
-                className="input w-full "
-              />
-            </div>
-            <div>
-              <input type="file" name="image" className="file-input w-full" />
-            </div>
-            <div>
-              <input
-                name="resellPrice"
-                type="text"
-                required
-                placeholder="Resell Price"
-                className="input w-full  "
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="originalPrice"
-                required
-                placeholder="Original Price"
-                className="input w-full  "
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="location"
-                required
-                placeholder="Location"
-                className="input w-full  "
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="useTime"
-                required
-                placeholder="Uses time"
-                className="input w-full  "
-              />
-            </div>
+      {isLoading ? (
+        <>
+          <div className="flex justify-center items-center h-screen">
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-400"></div>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            <div>
-              <input
-                type="text"
-                defaultValue={user?.displayName}
-                readOnly
+        </>
+      ) : (
+        <>
+          <form onSubmit={handleAddProductSubmit}>
+            <div className="bg-gray-100 p-4">
+              <div className="grid md:grid-cols-3 gap-5 ">
+                <div>
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Product name"
+                    className="input w-full "
+                  />
+                </div>
+                <div>
+                  <input
+                    type="file"
+                    name="image"
+                    className="file-input w-full"
+                  />
+                </div>
+                <div>
+                  <input
+                    name="resellPrice"
+                    type="text"
+                    required
+                    placeholder="Resell Price"
+                    className="input w-full  "
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="originalPrice"
+                    required
+                    placeholder="Original Price"
+                    className="input w-full  "
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="location"
+                    required
+                    placeholder="Location"
+                    className="input w-full  "
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="useTime"
+                    required
+                    placeholder="Uses time"
+                    className="input w-full  "
+                  />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-5">
+                <div>
+                  <input
+                    type="text"
+                    defaultValue={user?.displayName}
+                    readOnly
+                    required
+                    name="sellerName"
+                    placeholder="Seller Name"
+                    className="input  w-full my-4"
+                  />
+                </div>
+                <div>
+                  <select
+                    name="categoryProduct"
+                    className="select w-full mt-4"
+                    required
+                  >
+                    <option>Hp</option>
+                    <option>MacBook</option>
+                    <option>Dell</option>
+                    <option>Acer</option>
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name="condition"
+                    className="select w-full mt-4"
+                    required
+                  >
+                    <option>Excelent</option>
+                    <option>Fair</option>
+                    <option>Good</option>
+                  </select>
+                </div>
+              </div>
+              <textarea
                 required
-                name="sellerName"
-                placeholder="Seller Name"
-                className="input  w-full my-4"
-              />
-            </div>
-            <div>
-              <select
-                name="categoryProduct"
-                className="select w-full mt-4"
-                required
-              >
-                <option>Hp</option>
-                <option>MacBook</option>
-                <option>Dell</option>
-                <option>Acer</option>
-              </select>
-            </div>
-            <div>
-              <select name="condition" className="select w-full mt-4" required>
-                <option>Excelent</option>
-                <option>Fair</option>
-                <option>Good</option>
-              </select>
-            </div>
-          </div>
-          <textarea
-            required
-            className="textarea w-full  mt-5"
-            placeholder="Product Description"
-            name="productDetails"
-          ></textarea>
-          {isLoading ? (
-            <>
-              <FadeLoader
-                color={"#000000"}
-                loading={isLoading}
-                size={50}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            </>
-          ) : (
-            <>
-              {" "}
+                className="textarea w-full  mt-5"
+                placeholder="Product Description"
+                name="productDetails"
+              ></textarea>
               <button className="w-full mt-4 bg-blue-400 text-white px-3 py-3 font-bold text-xl rounded-md">
                 Add Product
               </button>
-            </>
-          )}
-        </div>
-      </form>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 };

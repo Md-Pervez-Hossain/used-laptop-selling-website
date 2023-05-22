@@ -6,9 +6,27 @@ import { AuthContext } from "../../UseContex/AuthProvider";
 const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
   const { user } = useContext(AuthContext);
   const [disable, setDisable] = useState(0);
-  const { _id, image, name, resellPrice, booked } = myProduct;
+  const { _id, image, name, resellPrice, booked, advertiseMent } = myProduct;
   const handleAdvertisement = (myProduct) => {
     console.log(myProduct);
+
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproducts/${myProduct?._id}`,
+      {
+        method: "PUT",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Advertisement Start");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     const {
       _id,
       categoryProduct,
@@ -55,13 +73,18 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
       .catch((error) => {
         toast.error(error.message);
       });
-    setDisable(true);
   };
 
   return (
     <div className="bg-gray-100 p-5 shadow-lg ">
-      <img src={image} alt="" />
-      <p className="text-3xl font-bold my-3">{name}</p>
+      <div
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+        className="bg-cover bg-center bg-no-repeat h-[100px]"
+      ></div>
+
+      <p className="text-xl font-bold my-3">{name}</p>
       <div className="flex justify-between items-center">
         <div>
           <p className="font-bold">
@@ -76,17 +99,32 @@ const DisplayMyProduct = ({ myProduct, handleMyProductDelete }) => {
               ) : (
                 <>
                   <p className="text-blue-400">Available</p>
+                </>
+              )}
+            </span>
+          </h2>
+          {booked === true ? (
+            <></>
+          ) : (
+            <>
+              {advertiseMent === false ? (
+                <>
                   <button
-                    disabled={disable}
                     onClick={() => handleAdvertisement(myProduct)}
                     className="bg-blue-400 px-4 py-2 text-white font-bold mt-2 rounded-md"
                   >
                     AdvertiseMent
                   </button>
                 </>
+              ) : (
+                <>
+                  <button className="bg-gray-400 px-4 py-2 text-white font-bold mt-2 rounded-md">
+                    Advertised
+                  </button>
+                </>
               )}
-            </span>
-          </h2>
+            </>
+          )}
         </div>
         <div>
           <div className="flex gap-5">

@@ -18,6 +18,7 @@ import Main from "../Layout/Main";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
+import DashBoadCommonInfo from "../DashBoard/DashBoadCommonInfo";
 
 export const router = createBrowserRouter([
   {
@@ -63,15 +64,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addproduct/:id",
-        loader: async ({ params }) =>
-          fetch(
+        loader: async ({ params }) => {
+          return fetch(
             `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/addproduct/${params.id}`
-          ),
-        element: (
-          <PrivateRoute>
-            <SingleCategory></SingleCategory>
-          </PrivateRoute>
-        ),
+          );
+        },
+        element: <SingleCategory></SingleCategory>,
+      },
+      {
+        path: "/advertisement/singleProduct/:id",
+        loader: async ({ params }) => {
+          return fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/advertisement/singleProduct/${params.id}`
+          );
+        },
+        element: <SingleCategory></SingleCategory>,
       },
     ],
   },
@@ -84,6 +91,10 @@ export const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashBoadCommonInfo></DashBoadCommonInfo>,
+      },
       {
         path: "/dashboard/addservice",
         element: <AddProducts></AddProducts>,

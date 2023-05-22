@@ -7,6 +7,7 @@ import logo from "../../assets/logo2.png";
 import {
   FaCarAlt,
   FaHeart,
+  FaRegListAlt,
   FaRegPlusSquare,
   FaUserAlt,
   FaWeightHanging,
@@ -45,9 +46,9 @@ const DashBoard = () => {
         <div className="flex flex-col items-center  md:flex-row  gap-10">
           <div className=" basis-3/12 text-xl font-bold h-screen shadow-lg pt-10 pl-5  ">
             <Link to="/">
-              {" "}
               <img src={logo} alt="" className="mb-5 w-24 h-24" />
             </Link>
+
             <div className="flex gap-4 items-center mb-5">
               <div
                 style={{
@@ -56,6 +57,15 @@ const DashBoard = () => {
                 className=" border-2 border-blue-400  bg-center bg-cover bg-no-repeat h-16 w-16 rounded-full"
               ></div>
               <h2 className="text-xl font-bold">{user?.displayName}</h2>
+            </div>
+
+            <div>
+              <NavLink to="/dashboard">
+                <p className="mb-2">
+                  <FaRegListAlt className="inline-block mb-2 mr-2"></FaRegListAlt>{" "}
+                  Dashboard
+                </p>
+              </NavLink>
             </div>
 
             <div>
@@ -97,8 +107,11 @@ const DashBoard = () => {
                     }
                     to="myorders"
                   >
-                    <FaCarAlt className="inline-block mb-2 mr-2"></FaCarAlt>
-                    <p>My Orders</p>
+                    <p>
+                      {" "}
+                      <FaCarAlt className="inline-block mb-2 mr-2"></FaCarAlt>My
+                      Orders
+                    </p>
                   </NavLink>
                   <NavLink
                     className={({ isActive }) =>
@@ -106,8 +119,11 @@ const DashBoard = () => {
                     }
                     to="mywishlist"
                   >
-                    <FaHeart className="inline-block mb-2 mr-2"></FaHeart>{" "}
-                    <p>My WishList</p>
+                    <p>
+                      {" "}
+                      <FaHeart className="inline-block mb-2 mr-2"></FaHeart> My
+                      WishList
+                    </p>
                   </NavLink>
                 </>
               )}

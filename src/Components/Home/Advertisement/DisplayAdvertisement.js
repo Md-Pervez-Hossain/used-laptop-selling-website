@@ -48,7 +48,7 @@ const DisplayAdvertisement = ({ advertisement }) => {
         Price : <span className="font-normal"> {resellPrice} BDT</span>{" "}
       </p>
 
-      <Link to={`/addproduct/${_id}`}>
+      <Link to={`/advertisement/singleProduct/${_id}`}>
         <button className="  font-bold  rounded-md">
           Read More{" "}
           <FaArrowRight className="inline-block text-[14px]"></FaArrowRight>

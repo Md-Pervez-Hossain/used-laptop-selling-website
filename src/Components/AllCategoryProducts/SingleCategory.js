@@ -8,11 +8,12 @@ const SingleCategory = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
   const [disable, setDisable] = useState(0);
-  const [userVerified, setUserVarified] = useState("");
-
+  const [userVerified, setUserVarified] = useState({});
+  const [userEmail, setUserEmail] = useState({});
   const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
   console.log(singleProduct);
+
   const {
     _id,
     name,
@@ -22,12 +23,10 @@ const SingleCategory = () => {
     useTime,
     location,
     sellerName,
+    email,
     productDetails,
     categoryProduct,
   } = singleProduct;
-  console.log(singleProduct);
-  // const navigate = useNavigate();
-  // navigate(`/addproducts/${productId}`);
 
   const handleBookNow = (event) => {
     event.preventDefault();
@@ -114,19 +113,29 @@ const SingleCategory = () => {
       });
     setDisable(true);
   };
-  useEffect(() => {
-    if (user?.email) {
-      fetch(
-        `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users/${user?.email}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setUserVarified(data);
-        });
-    }
-  }, [user?.email]);
 
+  useEffect(() => {
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/users/${email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUserVarified(data);
+      });
+  }, [email]);
+
+  useEffect(() => {
+    fetch(
+      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/user/${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUserEmail(data);
+      });
+  }, [user?.email]);
+  console.log(userEmail);
   return (
     <div className="md:w-9/12 mx-auto my-16">
       <div className="flex flex-col md:flex-row justify-center items-center  p-5 gap-10 ">
@@ -153,7 +162,9 @@ const SingleCategory = () => {
           data-aos-once="false"
           className="md:w-1/2"
         >
-          <h2 className="md:text-3xl text-5xl font-bold mb-4 ">{name}</h2>
+          <h2 className="md:text-3xl text-5xl font-bold mb-4 ">
+            {categoryProduct}
+          </h2>
           <p className="font-normal mb-2">{productDetails}</p>
           <p className=" font-bold ">
             Resell Price : <span className="font-normal">{resellPrice}</span>{" "}
@@ -167,22 +178,26 @@ const SingleCategory = () => {
           <p className=" font-bold ">
             Location: <span className="font-normal">{location}</span>
           </p>
-          <div className="flex items-center gap-2">
-            <div>
+          {userVerified?.status === "verified" ? (
+            <>
               <p className=" font-bold ">
-                Seller Name : <span className="font-normal">{sellerName}</span>
+                Seller Name:{" "}
+                <span className="font-normal">
+                  {sellerName}
+                  <FaCheckCircle className="inline-block text-blue-400"></FaCheckCircle>
+                </span>
               </p>
-            </div>
-            {userVerified.role === "verified" && (
-              <FaCheckCircle></FaCheckCircle>
-            )}
-          </div>
-
-          {user?.email === "Admin" && user?.email === "Seller" ? (
-            <></>
+            </>
           ) : (
             <>
-              {" "}
+              <p className=" font-bold ">
+                Seller Name: <span className="font-normal">{sellerName}</span>
+              </p>
+            </>
+          )}
+
+          {userEmail?.role === "Buyer" || userEmail?.role === "Seller" ? (
+            <>
               <label htmlFor="Booking-modal" className="btn">
                 Book Now
               </label>
@@ -279,6 +294,8 @@ const SingleCategory = () => {
                 Add To WishList
               </button>
             </>
+          ) : (
+            <></>
           )}
         </div>
       </div>

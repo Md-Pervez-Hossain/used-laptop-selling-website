@@ -6,8 +6,10 @@ import DisplayMyProduct from "./DisplayMyProduct";
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/myproduct/${user?.email}`,
       {
@@ -20,6 +22,11 @@ const MyProduct = () => {
       .then((data) => {
         setMyProducts(data);
         console.log(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
       });
   }, [user?.email]);
   const handleMyProductDelete = (id) => {
@@ -64,23 +71,33 @@ const MyProduct = () => {
 
   return (
     <div>
-      {myProducts?.length > 0 ? (
+      {loading ? (
         <>
-          <div className="grid md:grid-cols-3 gap-5">
-            {myProducts.map((myProduct) => (
-              <DisplayMyProduct
-                key={myProduct._id}
-                myProduct={myProduct}
-                handleMyProductDelete={handleMyProductDelete}
-              ></DisplayMyProduct>
-            ))}
+          <div className="flex justify-center items-center h-screen">
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-400"></div>
           </div>
         </>
       ) : (
         <>
-          <div>
-            <p className="text-2xl font-bold">Product Page Empaty</p>
-          </div>
+          {myProducts?.length > 0 ? (
+            <>
+              <div className="grid md:grid-cols-3 gap-5">
+                {myProducts?.map((myProduct) => (
+                  <DisplayMyProduct
+                    key={myProduct._id}
+                    myProduct={myProduct}
+                    handleMyProductDelete={handleMyProductDelete}
+                  ></DisplayMyProduct>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <p className="text-2xl font-bold">Product Page Empaty</p>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
