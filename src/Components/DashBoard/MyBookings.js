@@ -97,12 +97,17 @@ const MyBookings = () => {
                   <tr key={i}>
                     <th>{i + 1}</th>
                     <td>
-                      <img src={bookProduct.image} alt="" className="h-24" />
+                      <div
+                        style={{
+                          backgroundImage: `url(${bookProduct?.image})`,
+                        }}
+                        className="bg-cover bg-center bg-no-repeat h-[80px] w-[80px] rounded-full"
+                      ></div>
                     </td>
                     <td>{bookProduct.productname}</td>
                     <td>{bookProduct.price}</td>
                     <td>
-                      {bookProduct.paid === true ? (
+                      {bookProduct?.paid === true ? (
                         <>
                           {" "}
                           <Link>
@@ -122,12 +127,24 @@ const MyBookings = () => {
                       )}
                     </td>
                     <td>
-                      <button
-                        onClick={() => handleMyorderDelete(bookProduct._id)}
-                        className="bg-blue-400 px-4 py-2 text-white font-bold  rounded-md"
-                      >
-                        Order Cancel
-                      </button>
+                      {bookProduct?.paid === true ? (
+                        <>
+                          {" "}
+                          <button className="bg-gray-400 px-4 py-2 text-white font-bold  rounded-md">
+                            Can't Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {" "}
+                          <button
+                            onClick={() => handleMyorderDelete(bookProduct._id)}
+                            className="bg-blue-400 px-4 py-2 text-white font-bold  rounded-md"
+                          >
+                            Order Cancel
+                          </button>
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))}

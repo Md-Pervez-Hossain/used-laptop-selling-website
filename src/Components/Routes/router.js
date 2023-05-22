@@ -19,6 +19,7 @@ import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 import DashBoadCommonInfo from "../DashBoard/DashBoadCommonInfo";
+import SellerBookedProducts from "../DashBoard/SellerBookedProducts/SellerBookedProducts";
 
 export const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addservice",
         element: <AddProducts></AddProducts>,
+      },
+      {
+        path: "/dashboard/sellerBookedProduct",
+        element: <SellerBookedProducts></SellerBookedProducts>,
       },
       {
         path: "/dashboard/myorders",

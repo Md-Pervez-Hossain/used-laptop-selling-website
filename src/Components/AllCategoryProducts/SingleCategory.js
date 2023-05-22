@@ -13,7 +13,6 @@ const SingleCategory = () => {
   const [openModal, setOpenModal] = useState(null);
   const singleProduct = useLoaderData();
   console.log(singleProduct);
-
   const {
     _id,
     name,
@@ -32,23 +31,24 @@ const SingleCategory = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const email = form.email.value;
     const productname = form.productname.value;
     const price = form.price.value;
     const number = form.number.value;
     const location = form.location.value;
-    console.log({ name, email, productname, price, number, location });
 
     const bookingInfo = {
       bookingId: _id,
       name,
-      email,
+      buyerEmail: user?.email,
       productname,
       price,
       number,
       location,
       image,
+      sellerEmail: email,
+      sellerName,
     };
+    console.log(bookingInfo);
     fetch(
       "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/buyerBooking",
       {
