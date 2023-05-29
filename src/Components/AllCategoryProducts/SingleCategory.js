@@ -26,6 +26,7 @@ const SingleCategory = () => {
     productDetails,
     categoryProduct,
   } = singleProduct;
+  console.log(singleProduct);
 
   const handleBookNow = (event) => {
     event.preventDefault();
@@ -39,7 +40,7 @@ const SingleCategory = () => {
     const bookingInfo = {
       bookingId: _id,
       name,
-      buyerEmail: user?.email,
+      email: user?.email,
       productname,
       price,
       number,
@@ -239,7 +240,7 @@ const SingleCategory = () => {
                         </div>
                         <div>
                           <input
-                            defaultValue={name}
+                            defaultValue={categoryProduct}
                             readOnly
                             name="productname"
                             type="text"

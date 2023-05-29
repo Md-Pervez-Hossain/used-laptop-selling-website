@@ -7,8 +7,20 @@ const CheckoutForm = ({ booking }) => {
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);
   const [successId, setSuccessId] = useState("");
-  const { price, bookingId, productname, _id } = booking;
+  const {
+    price,
+    number,
+    image,
+    email,
+    location,
+    bookingId,
+    productname,
+    _id,
+    sellerEmail,
+    sellerName,
+  } = booking;
   console.log(booking);
+
   const stripe = useStripe();
   const elements = useElements();
   useEffect(() => {
@@ -63,8 +75,15 @@ const CheckoutForm = ({ booking }) => {
     if (paymentIntent.status === "succeeded") {
       const payment = {
         price,
-        bookingId: _id,
+        bookingId,
         transTionId: paymentIntent.id,
+        number,
+        image,
+        email,
+        location,
+        productname,
+        sellerEmail,
+        sellerName,
       };
       fetch(
         "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/payments",

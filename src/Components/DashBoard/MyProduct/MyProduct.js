@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../UseContex/AuthProvider";
 import DisplayMyProduct from "./DisplayMyProduct";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
@@ -81,14 +82,51 @@ const MyProduct = () => {
         <>
           {myProducts?.length > 0 ? (
             <>
-              <div className="grid md:grid-cols-3 gap-5">
-                {myProducts?.map((myProduct) => (
-                  <DisplayMyProduct
-                    key={myProduct._id}
-                    myProduct={myProduct}
-                    handleMyProductDelete={handleMyProductDelete}
-                  ></DisplayMyProduct>
-                ))}
+              <div>
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Product Name</th>
+                        <th>Image</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myProducts?.map((myProduct, idx) => {
+                        return (
+                          <tr key={myProduct?._id}>
+                            <th>{idx + 1}</th>
+                            <td>{myProduct?.name}</td>
+                            <td>
+                              <div
+                                style={{
+                                  backgroundImage: `url(${myProduct?.image})`,
+                                }}
+                                className="bg-cover bg-center bg-no-repeat h-[80px] w-[80px] rounded-full"
+                              ></div>
+                            </td>
+                            <td>{myProduct?.resellPrice}</td>
+                            <td>
+                              <div className="flex gap-5">
+                                <FaTrashAlt
+                                  onClick={() =>
+                                    handleMyProductDelete(myProduct?._id)
+                                  }
+                                  className="cursor-pointer text-blue-400"
+                                ></FaTrashAlt>
+                                <FaEdit className="cursor-pointer text-blue-400"></FaEdit>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </>
           ) : (

@@ -10,6 +10,7 @@ console.log(stripePromise);
 const Payment = () => {
   const booking = useLoaderData();
   const { productname, price, _id } = booking;
+  console.log(booking);
   return (
     <div>
       <h2 className="text-3xl font-bold">Payment For {productname}</h2>

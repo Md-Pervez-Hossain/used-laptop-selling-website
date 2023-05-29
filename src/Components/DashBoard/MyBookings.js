@@ -53,20 +53,6 @@ const MyBookings = () => {
           toast.error(error.message);
         });
     }
-
-    fetch(
-      `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/productupdate/${id}`,
-      {
-        method: "PUT",
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
   };
 
   return (
@@ -79,7 +65,6 @@ const MyBookings = () => {
         </>
       ) : (
         <>
-          {" "}
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>

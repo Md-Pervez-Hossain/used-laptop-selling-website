@@ -20,6 +20,8 @@ import Signup from "../Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 import DashBoadCommonInfo from "../DashBoard/DashBoadCommonInfo";
 import SellerBookedProducts from "../DashBoard/SellerBookedProducts/SellerBookedProducts";
+import SellerOrderPage from "../SellerOrderPage/SellerOrderPage";
+import BuyersOrderPage from "../BuyersOrderPage/BuyersOrderPage";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +105,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/sellerBookedProduct",
         element: <SellerBookedProducts></SellerBookedProducts>,
+      },
+      {
+        path: "/dashboard/sellerOrderProduct",
+        element: <SellerOrderPage></SellerOrderPage>,
+      },
+      {
+        path: "/dashboard/buyerOrderProduct",
+        element: <BuyersOrderPage></BuyersOrderPage>,
       },
       {
         path: "/dashboard/myorders",
