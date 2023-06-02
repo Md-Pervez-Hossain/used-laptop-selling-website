@@ -214,6 +214,20 @@ const DashBoard = () => {
                           My Buyers
                         </p>
                       </NavLink>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-blue-400 font-bold"
+                            : "text-black-500 "
+                        }
+                        to="laptopBlog"
+                      >
+                        <p className="mb-2">
+                          {" "}
+                          <FaUserAlt className="inline-block mb-2 mr-2"></FaUserAlt>{" "}
+                          Blog
+                        </p>
+                      </NavLink>
                     </>
                   )}
                 </div>

@@ -22,6 +22,8 @@ import DashBoadCommonInfo from "../DashBoard/DashBoadCommonInfo";
 import SellerBookedProducts from "../DashBoard/SellerBookedProducts/SellerBookedProducts";
 import SellerOrderPage from "../SellerOrderPage/SellerOrderPage";
 import BuyersOrderPage from "../BuyersOrderPage/BuyersOrderPage";
+import LaptopBlog from "../LaptopBlog/LaptopBlog";
+import SingleLaptopBlog from "../LaptopBlog/SingleLaptopBlog";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,13 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/laptopBlog/:id",
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/laptopBlog/${params.id}`);
+        },
+        element: <SingleLaptopBlog></SingleLaptopBlog>,
       },
       {
         path: "/signup",
@@ -101,6 +110,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addservice",
         element: <AddProducts></AddProducts>,
+      },
+      {
+        path: "/dashboard/laptopBlog",
+        element: <LaptopBlog></LaptopBlog>,
       },
       {
         path: "/dashboard/sellerBookedProduct",
