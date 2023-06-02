@@ -15,8 +15,8 @@ const HeroBanner = () => {
             data-aos-once="false"
           >
             <p className="mb-2">Summer Sale</p>
-            <h2 className="text-4xl font-bold mb-2">Upto 50% Off</h2>
-            <h2 className="text-4xl font-bold mb-2">New Laptops</h2>
+            <h2 className="text-5xl font-bold mb-2">Upto 50% Off</h2>
+            <h2 className="text-5xl font-bold mb-2">New Laptops</h2>
             <p className="mt-3">
               Thank You For your Purchase.We Hope You Enjoy This Laptop .this
               Laptop is Awsome to Use

@@ -33,7 +33,7 @@ const DisplayAdvertisement = ({ advertisement }) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          height: "150px",
+          height: "200px",
         }}
       ></div>
       <p className="text-xl font-bold mb-3 mt-4">{categoryProduct}</p>

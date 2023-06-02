@@ -36,7 +36,7 @@ const FeaturedProduct = () => {
           <div className="relative ">
             <div
               style={{
-                backgroundImage: `url("https://cdn.ttgtmedia.com/rms/onlineimages/hp_elitebook_mobile.jpg")`,
+                backgroundImage: `url("https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/How-to-Find-the-Model-Number-on-a-Laptop.jpg?resize=1280%2C960&ssl=1")`,
               }}
               className="bg-cover bg-center bg-no-repeat transition ease-in delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110  duration-300 h-[250px] brightness-50"
             ></div>
