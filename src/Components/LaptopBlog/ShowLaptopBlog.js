@@ -23,22 +23,15 @@ const ShowLaptopBlog = () => {
         data-aos-mirror="true"
         data-aos-once="false"
         className="w-1/2 mx-auto"
-      >
-        <h2 className="text-4xl mb-8 font-bold text-center">laptopblog Blog</h2>
-        <p className="text-center mb-10">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis
-          tempore aperiam aliquam delectus facilis ullam maxime repellendus rem
-          quae optio cum iusto dolor inventore, iste deleniti sed, deserunt
-          repudiandae odio.
-        </p>
-      </div>
+      ></div>
+      <h2 className="text-4xl mb-10 font-bold ">laptopblog Blog</h2>
       <div
         data-aos="fade-left"
         data-aos-delay="50"
         data-aos-duration="1000"
         data-aos-mirror="true"
         data-aos-once="false"
-        className="grid md:grid-cols-3 "
+        className="grid md:grid-cols-2 gap-24 "
       >
         {laptopBlog?.map((blog) => (
           <DisplayLaptopBlog blog={blog} key={blog._id}></DisplayLaptopBlog>

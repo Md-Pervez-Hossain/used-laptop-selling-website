@@ -36,22 +36,22 @@ const DisplayAdvertisement = ({ advertisement }) => {
           height: "150px",
         }}
       ></div>
-      <p className="text-xl font-bold mb-2 mt-4">{categoryProduct}</p>
+      <p className="text-xl font-bold mb-3 mt-4">{categoryProduct}</p>
       <p className="mb-1">
         {productDetails.length >= 50 ? (
-          <>{`${productDetails.slice(0, 50)} ...`}</>
+          <>{`${productDetails.slice(0, 45)} ...`}</>
         ) : (
           <>{productDetails}</>
         )}
       </p>
-      <p className="font-bold">
+      <p>
         Price : <span className="font-normal"> {resellPrice} BDT</span>{" "}
       </p>
 
       <Link to={`/advertisement/singleProduct/${_id}`}>
-        <button className="  font-bold  rounded-md">
+        <button className=" text-blue-400 mt-3 rounded-md">
           Read More{" "}
-          <FaArrowRight className="inline-block text-[14px]"></FaArrowRight>
+          <FaArrowRight className="inline-block text-[12px]"></FaArrowRight>
         </button>
       </Link>
     </div>

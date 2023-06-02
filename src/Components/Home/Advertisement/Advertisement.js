@@ -66,7 +66,7 @@ const Advertisement = () => {
           {" "}
           {advertise?.length > 0 ? (
             <>
-              <div className="md:w-9/12 mx-auto my-16 p-4">
+              <div className="md:w-9/12 mx-auto mt-16 ">
                 <div
                   data-aos="fade-right"
                   data-aos-delay="50"
@@ -74,7 +74,7 @@ const Advertisement = () => {
                   data-aos-mirror="true"
                   data-aos-once="false"
                 >
-                  <h2 className="text-3xl mb-5 font-bold">Sponsared</h2>
+                  <h2 className="text-3xl mb-10 font-bold">Sponsared</h2>
                 </div>
                 <div className="grid md:grid-cols-4 gap-10">
                   {advertise?.slice(previous, next)?.map((advertisement) => (
@@ -91,7 +91,7 @@ const Advertisement = () => {
           )}
         </>
       )}
-      <div className="flex items-end justify-end gap-2 w-9/12 mx-auto">
+      <div className="flex items-end justify-end gap-2 w-9/12 mx-auto mt-5">
         <button onClick={() => handlePrevious()}>
           <FaArrowLeft></FaArrowLeft>
         </button>

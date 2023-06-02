@@ -24,6 +24,7 @@ import SellerOrderPage from "../SellerOrderPage/SellerOrderPage";
 import BuyersOrderPage from "../BuyersOrderPage/BuyersOrderPage";
 import LaptopBlog from "../LaptopBlog/LaptopBlog";
 import SingleLaptopBlog from "../LaptopBlog/SingleLaptopBlog";
+import About from "../Home/About";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
       {
         path: "/blog",

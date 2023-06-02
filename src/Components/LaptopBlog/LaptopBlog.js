@@ -49,7 +49,7 @@ const LaptopBlog = () => {
             if (data.acknowledged) {
               form.reset();
               setLoading(false);
-              navigate("/home");
+              navigate("/");
             }
           })
           .catch((error) => {

@@ -1,5 +1,4 @@
 import React from "react";
-import About from "./About";
 import Advertisement from "./Advertisement/Advertisement";
 import HeroBanner from "./HeroBanner";
 import LaptopCategories from "./LaptopCategories";
@@ -12,9 +11,8 @@ const Home = () => {
   return (
     <div>
       <HeroBanner></HeroBanner>
-      <About></About>
-      <Advertisement></Advertisement>
       <LaptopCategories></LaptopCategories>
+      <Advertisement></Advertisement>
       <TrastedBatch></TrastedBatch>
       <ShowLaptopBlog></ShowLaptopBlog>
       <Transportation></Transportation>

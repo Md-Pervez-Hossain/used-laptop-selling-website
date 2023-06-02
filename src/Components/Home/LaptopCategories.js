@@ -29,7 +29,7 @@ const LaptopCategories = () => {
     },
   ];
   return (
-    <div className="md:w-9/12 mx-auto p-4">
+    <div className="md:w-9/12 mx-auto  mt-16">
       <div
         data-aos="fade-right"
         data-aos-delay="50"
@@ -37,15 +37,9 @@ const LaptopCategories = () => {
         data-aos-mirror="true"
         data-aos-once="false"
       >
-        <h2 className="md:text-4xl text-4xl font-bold text-center mb-5 ">
+        <h2 className="md:text-4xl text-4xl font-bold  mb-10 ">
           Laptop categories
         </h2>
-        <p className="text-center mb-10 ">
-          Laptop Brands are Apple, Dell, Sony, Hewlett-Packard (HP), Samsung,{" "}
-          <br />
-          Compaq, Acer, Lenovo, Toshiba, LG, Asus, Panasonic, Alienware, Gateway
-          etc.
-        </p>
       </div>
       <div className="grid md:grid-cols-4 gap-10">
         {categories?.map((category) => (

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../UseContex/AuthProvider";
-import logo from "../../assets/logo.png";
+
+import logo2 from "../../assets/logo(colorfull).png";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -15,26 +16,29 @@ const Header = () => {
       .catch(() => {});
   };
   return (
-    <div className="bg-blue-400  py-5">
+    <div className="bg-white  py-5">
       <div className="w-9/12 mx-auto font-semibold text-2xl ">
         <div className="flex justify-between items-center ">
           <div>
             <Link to="/">
-              <img src={logo} alt="" className="h-14" />
+              <img src={logo2} alt="" className="h-14" />
             </Link>
           </div>
-          <div className="flex md:gap-5 items-center menu menu-vertical lg:menu-horizontal">
-            <Link to="/" className="text-white font-bold">
+          <div className="flex md:gap-8 items-center menu menu-vertical lg:menu-horizontal">
+            <Link to="/" className=" font-bold">
               Home
             </Link>
-            <Link to="/blog" className="text-white font-bold">
+            <Link to="/about" className=" font-bold">
+              About
+            </Link>
+            <Link to="/blog" className=" font-bold">
               Blog
             </Link>
             {user?.email ? (
               <></>
             ) : (
               <>
-                <Link to="/login" className="text-white font-bold">
+                <Link to="/login" className="font-bold">
                   Login
                 </Link>
               </>
@@ -47,7 +51,7 @@ const Header = () => {
                     <img
                       src={user?.photoURL}
                       alt=""
-                      className="w-12 h-12 rounded-full"
+                      className="w-12 h-12 rounded-full border-2 border-blue-400"
                     />
                   </label>
                   <ul

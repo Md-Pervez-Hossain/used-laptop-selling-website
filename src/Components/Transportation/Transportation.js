@@ -2,7 +2,7 @@ import React from "react";
 
 const Transportation = () => {
   return (
-    <div className="w-9/12 mx-auto my-16 bg-gray-100 py-16 text-center">
+    <div className="w-9/12 mx-auto my-24 bg-gray-100 py-16 text-center">
       <div className="grid grid-cols-3 gap-10">
         <div>
           <p className="font-bold">Best quality</p>
