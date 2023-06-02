@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../UseContex/AuthProvider";
 
-import logo2 from "../../assets/logo(colorfull).png";
+import logo from "../../assets/laptop-logo.png";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -16,12 +16,12 @@ const Header = () => {
       .catch(() => {});
   };
   return (
-    <div className="bg-white  py-5">
+    <div className="bg-white  py-8">
       <div className="w-9/12 mx-auto font-semibold text-2xl ">
         <div className="flex justify-between items-center ">
           <div>
             <Link to="/">
-              <img src={logo2} alt="" className="h-14" />
+              <img src={logo} alt="" className="h-12" />
             </Link>
           </div>
           <div className="flex md:gap-8 items-center menu menu-vertical lg:menu-horizontal">

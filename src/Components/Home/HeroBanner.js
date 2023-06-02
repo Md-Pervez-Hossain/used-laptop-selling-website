@@ -35,7 +35,7 @@ const HeroBanner = () => {
             data-aos-mirror="true"
             data-aos-once="false"
           >
-            <img src={banner} alt="" />
+            <img src={banner} alt="" className="w-full" />
           </div>
         </div>
       </div>

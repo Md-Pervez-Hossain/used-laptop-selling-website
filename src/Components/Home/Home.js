@@ -6,6 +6,7 @@ import Contact from "../Contact/Contact";
 import TrastedBatch from "../TrastedBatch/TrastedBatch";
 import ShowLaptopBlog from "../LaptopBlog/ShowLaptopBlog";
 import Transportation from "../Transportation/Transportation";
+import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <TrastedBatch></TrastedBatch>
       <ShowLaptopBlog></ShowLaptopBlog>
       <Transportation></Transportation>
+      <FeaturedProduct></FeaturedProduct>
       <Contact></Contact>
     </div>
   );

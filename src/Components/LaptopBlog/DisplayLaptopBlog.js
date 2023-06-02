@@ -17,7 +17,7 @@ const DisplayLaptopBlog = ({ blog }) => {
           <p className="font-bold text-xl mb-3 mt-5">{title}</p>
           <p>{`${details.slice(0, 80)} ...`}</p>
           <Link to={`/laptopBlog/${_id}`}>
-            <button className="bg-blue-400 text-white px-6 py-2 mt-5">
+            <button className="bg-blue-400 text-white px-6 py-2 mt-5 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110  duration-300">
               Learn More
             </button>
           </Link>

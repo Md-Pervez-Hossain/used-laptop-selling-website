@@ -20,7 +20,7 @@ const DisplayCategories = ({ category }) => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
-              height: "200px",
+              height: "150px",
             }}
           ></div>
 
