@@ -16,7 +16,7 @@ const Header = () => {
       .catch(() => {});
   };
   return (
-    <div className="bg-white  py-8">
+    <div className="bg-white  py-8 sticky top-0 z-50">
       <div className="w-9/12 mx-auto font-semibold text-2xl ">
         <div className="flex justify-between items-center ">
           <div>

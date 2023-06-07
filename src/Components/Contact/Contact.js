@@ -3,14 +3,14 @@ import React from "react";
 const Contact = () => {
   return (
     <section className="py-6 my-16 w-9/12 mx-auto dark:bg-gray-800 dark:text-gray-50">
-      <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
+      <div className="grid md:grid-cols-2 gap-10">
         <div
           data-aos="fade-right"
           data-aos-delay="50"
           data-aos-duration="1000"
           data-aos-mirror="true"
           data-aos-once="false"
-          className="py-6 md:py-0 md:px-6"
+          className="py-6 md:py-0 "
         >
           <h1 className="text-4xl font-bold mb-5">Let's Contact With Us</h1>
 

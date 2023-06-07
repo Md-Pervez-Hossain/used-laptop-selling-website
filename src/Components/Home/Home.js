@@ -7,6 +7,8 @@ import TrastedBatch from "../TrastedBatch/TrastedBatch";
 import ShowLaptopBlog from "../LaptopBlog/ShowLaptopBlog";
 import Transportation from "../Transportation/Transportation";
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
+import FAQSection from "../FAQSection/FAQSection";
+import TestimonialSlider from "../Testimonial/TestimonialSlider";
 
 const Home = () => {
   return (
@@ -18,6 +20,8 @@ const Home = () => {
       <ShowLaptopBlog></ShowLaptopBlog>
       <Transportation></Transportation>
       <FeaturedProduct></FeaturedProduct>
+      <FAQSection></FAQSection>
+      <TestimonialSlider></TestimonialSlider>
       <Contact></Contact>
     </div>
   );
