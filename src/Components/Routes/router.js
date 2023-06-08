@@ -55,7 +55,9 @@ export const router = createBrowserRouter([
       {
         path: "/laptopBlog/:id",
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/laptopBlog/${params.id}`);
+          return fetch(
+            `https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/laptopBlog/${params.id}`
+          );
         },
         element: <SingleLaptopBlog></SingleLaptopBlog>,
       },

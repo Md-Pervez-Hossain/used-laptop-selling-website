@@ -4,7 +4,9 @@ import DisplayLaptopBlog from "./DisplayLaptopBlog";
 const ShowLaptopBlog = () => {
   const [laptopBlog, setLaptopBlog] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/laptopBlog")
+    fetch(
+      "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/laptopBlog"
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

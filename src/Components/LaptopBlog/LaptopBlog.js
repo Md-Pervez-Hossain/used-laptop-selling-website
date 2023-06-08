@@ -36,13 +36,16 @@ const LaptopBlog = () => {
           name: user?.displayName,
           img: user?.photoURL,
         };
-        fetch("http://localhost:5000/laptopBlog", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(LaptopBlogInfo),
-        })
+        fetch(
+          "https://b612-used-products-resale-server-side-md-pervez-hossain.vercel.app/laptopBlog",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(LaptopBlogInfo),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
